@@ -1,0 +1,38 @@
+import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
+// import Header from "../components/Header";
+import useResponsive from "@/hooks/UseResponsive";
+
+export default function MainLayout() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isMobile, isTablet, isDesktop } = useResponsive();
+
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh", // better than fixed height for responsiveness
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#060606",
+        overflowX: "hidden", // prevents horizontal scroll
+      }}
+    >
+      {/* <Header /> */}
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          backgroundColor: "#060606",
+          width: "100%",
+          height: "100%",
+          // px: isMobile ? 1 : isTablet ? 2 : 4, // responsive padding
+          py: isMobile ? 1 : 2, // responsive vertical padding
+          overflowY: "auto", // ensures scrollable content without white gaps
+        }}
+      >
+        <Outlet />
+      </Box>
+    </Box>
+  );
+}
