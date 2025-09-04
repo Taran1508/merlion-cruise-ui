@@ -39,27 +39,36 @@ export const StepItem = styled(Box, {
     prop !== "iscompleted" &&
     prop !== "isclickable",
 })<StepItemProps>(
-  ({ theme, ismobile, istablet, isactive, iscompleted, isclickable }) => ({
-    display: "flex",
-    padding: ismobile ? "6px 8px" : "8px 16px",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "60px",
-    backgroundColor: "#171717",
-    border: isactive ? "1px solid #4D4D4D" : "none",
-    cursor: isclickable ? "pointer" : "default",
-    transition: "all 0.2s ease-in-out",
-    minWidth: ismobile ? "auto" : "fit-content",
-    width: ismobile ? "100%" : "auto",
-    marginBottom: ismobile ? "4px" : "0",
+  ({ theme, ismobile, istablet, isactive, iscompleted, isclickable }) => {
+    const isUpcoming = !isactive && !iscompleted;
+    return {
+      display: "flex",
+      padding: ismobile
+        ? isUpcoming
+          ? "6px 0"
+          : "6px 8px"
+        : isUpcoming
+        ? "8px 0"
+        : "8px 16px",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: "60px",
+      backgroundColor: isUpcoming ? "transparent" : "#171717",
+      border: isactive ? "1px solid #4D4D4D" : "none",
+      cursor: isclickable ? "pointer" : "default",
+      transition: "all 0.2s ease-in-out",
+      minWidth: ismobile ? "auto" : "fit-content",
+      width: ismobile ? "100%" : "auto",
+      marginBottom: ismobile ? "4px" : "0",
 
-    "&:hover": isclickable
-      ? {
-          backgroundColor: "#202020",
-          transform: "translateY(-1px)",
-        }
-      : {},
-  })
+      "&:hover": isclickable
+        ? {
+            backgroundColor: isUpcoming ? "rgba(255,255,255,0.06)" : "#202020",
+            transform: "translateY(-1px)",
+          }
+        : {},
+    };
+  }
 );
 
 export const StepLabel = styled("div", {
@@ -71,7 +80,7 @@ export const StepLabel = styled("div", {
     prop !== "iscompleted",
 })<ResponsiveProps & { isactive?: boolean; iscompleted?: boolean }>(
   ({ ismobile, istablet, isactive, iscompleted }) => ({
-    color: isactive || (!iscompleted && !isactive) ? "#F6F6F6" : "#A0A0A0",
+    color: isactive ? "#F6F6F6" : iscompleted ? "#A0A0A0" : "#F6F6F6",
     fontFamily: "Poppins, sans-serif",
     fontSize: ismobile ? "12px" : "14px",
     fontWeight: 400,

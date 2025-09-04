@@ -1,5 +1,4 @@
 import React from "react";
-import useResponsive from "@/hooks/UseResponsive";
 import {
   StepperContainer,
   StepItem,
@@ -9,6 +8,7 @@ import {
   MobileStepIndicator,
   MobileDot,
 } from "./merlin-stepper.styles";
+import useResponsive from "@/hooks/UseResponsive";
 
 interface Step {
   id: number;
@@ -38,13 +38,13 @@ const MerlionStepper: React.FC<MerlionStepperProps> = ({
   steps,
   handleStepClick,
 }) => {
-  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const { isMobile } = useResponsive();
+  const viewport = typeof window !== "undefined" ? window.innerWidth : 1024;
+  const isTablet = !isMobile && viewport <= 1024;
+  const isDesktop = !isMobile && !isTablet;
 
   const handleStepItemClick = (step: Step) => {
-    // Allow clicking on completed steps or the current active step
-    if (step.isCompleted || step.isActive) {
-      handleStepClick(step.id);
-    }
+    handleStepClick(step.id);
   };
 
   return (
@@ -63,7 +63,7 @@ const MerlionStepper: React.FC<MerlionStepperProps> = ({
               isdesktop={isDesktop}
               isactive={step.isActive}
               iscompleted={step.isCompleted}
-              isclickable={step.isCompleted || step.isActive}
+              isclickable={true}
               onClick={() => handleStepItemClick(step)}
             >
               <StepLabel
