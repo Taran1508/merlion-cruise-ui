@@ -48,13 +48,13 @@ export const StepItem = styled(Box, {
       padding: ismobile
         ? isUpcoming
           ? "6px 8px"
-          : "8px 12px"
+          : "6px 8px"
         : istablet
         ? isUpcoming
-          ? "7px 10px"
+          ? "6px 4px"
           : "6px 4px"
         : isUpcoming
-        ? "8px 0"
+        ? "8px 16px"
         : "8px 16px",
       justifyContent: "center",
       alignItems: "center",
@@ -67,13 +67,6 @@ export const StepItem = styled(Box, {
       width: ismobile ? "100%" : "5%",
       whiteSpace: "nowrap",
       margin: 0,
-
-      "&:hover": isclickable
-        ? {
-            backgroundColor: isUpcoming ? "rgba(255,255,255,0.06)" : "#202020",
-            transform: "translateY(-1px)",
-          }
-        : {},
     };
   }
 );
