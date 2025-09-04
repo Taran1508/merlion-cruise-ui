@@ -99,18 +99,22 @@ export const LabelText = styled(Typography, {
     prop !== "ismobile" &&
     prop !== "istablet" &&
     prop !== "isdesktop" &&
+    prop !== "ishighlighted" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps>(({ ismobile, istablet, align }) => ({
-  color: "#848484",
-  fontFamily: "Poppins, sans-serif",
-  fontSize: ismobile ? "12px" : istablet ? "14px" : "16px",
-  fontWeight: 400,
-  lineHeight: "normal",
-  textTransform: "capitalize",
-  minWidth: ismobile ? "auto" : "144px",
-  textAlign: align === "right" ? "right" : "left",
-  flexShrink: 0,
-}));
+})<ResponsiveProps & AlignProps & { ishighlighted?: boolean }>(
+  ({ ishighlighted, ismobile, istablet, align }) => ({
+    color: ishighlighted ? "#FFF" : "#848484",
+    paddingLeft: ishighlighted ? "8px" : "",
+    fontFamily: "Poppins, sans-serif",
+    fontSize: ismobile ? "12px" : istablet ? "14px" : "16px",
+    fontWeight: ishighlighted ? 600 : 400,
+    lineHeight: "normal",
+    textTransform: "capitalize",
+    minWidth: ismobile ? "auto" : "144px",
+    textAlign: align === "right" ? "right" : "left",
+    flexShrink: 0,
+  })
+);
 
 export const ValueText = styled(Typography, {
   shouldForwardProp: (prop) =>
@@ -124,13 +128,11 @@ export const ValueText = styled(Typography, {
   ({ ismobile, istablet, islg, ishighlighted, align }) => ({
     color: "#FFF",
     fontFamily: "Poppins, sans-serif",
-    fontSize: ismobile ? "12px" : istablet ? "14px" : islg ? "14px" : "16px",
+    fontSize: ismobile ? "12px" : istablet ? "14px" : islg ? "12px" : "16px",
     fontWeight: ishighlighted ? 700 : 400,
     lineHeight: "normal",
     textTransform: ishighlighted ? "uppercase" : "capitalize",
-    backgroundColor: ishighlighted
-      ? "rgba(255, 255, 255, 0.05)"
-      : "transparent",
+    backgroundColor: "transparent",
     padding: ishighlighted ? "4px 8px" : "0",
     borderRadius: ishighlighted ? "4px" : "0",
     textAlign: align === "right" ? "right" : "left",
@@ -153,10 +155,13 @@ export const HighlightedRow = styled(Box, {
     prop !== "align",
 })<ResponsiveProps & AlignProps>(({ align }) => ({
   display: "flex",
-  justifyContent: align === "right" ? "flex-end" : "space-between",
+  justifyContent: "start",
   alignItems: "center",
+  color: "#FFF",
   width: "100%",
-  padding: "8px 0",
+  padding: "4px 0",
+  backgroundColor: "#202020",
   borderTop: "1px solid #242424",
-  textAlign: align === "right" ? "right" : "left",
+  borderRadius: "8px",
+  textAlign: "left",
 }));

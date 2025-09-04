@@ -1,35 +1,59 @@
 import SummaryCard from "@/components/summary-card/SummaryCard";
 import useResponsive from "@/hooks/UseResponsive";
-import { Divider, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 // Sample data for SummaryCard
 const travelerData = [
   {
-    travelerName: "Tom",
-    email: "tom@gmail.com",
-    phoneNumber: "+9172135412554",
+    travelerName: ["Traveler Name", "Tom"],
+    email: ["Email", "tom@gmail.com"],
+    phoneNumber: ["Phone Number", "+9172135412554"],
   },
   {
-    travelerName: "Tom",
-    email: "tom@gmail.com",
-    phoneNumber: "+9172135412554",
+    travelerName: ["Traveler Name", "Tom"],
+    email: ["Email", "tom@gmail.com"],
+    phoneNumber: ["Phone Number", "+9172135412554"],
   },
   {
-    travelerName: "Tom",
-    email: "tom@gmail.com",
-    phoneNumber: "+9172135412554",
+    travelerName: ["Traveler Name", "Tom"],
+    email: ["Email", "tom@gmail.com"],
+    phoneNumber: ["Phone Number", "+9172135412554"],
+  },
+  // {
+  //   divider_one: true, // this will render an empty co-traveller component with divider
+  // },
+];
+
+// Payment Data 1
+const orderSummaryData = [
+  {
+    totalAmount: ["Total Amount", "AED 10,000.00"],
+    serviceCharges: ["Service Charges ( 5% )", "AED 30.00"],
+    vat: ["VAT ( 5% )", "AED 10.00"],
   },
   {
-    travelerName: "Tom",
-    email: "tom@gmail.com",
-    phoneNumber: "+9172135412554",
+    paidAmount: ["Paid Amount", "AED 10,699.00"],
   },
 ];
+
+// Payment Data 2
+const orderSummaryData1 = [
+  {
+    totalAmount: ["Total Amount", "AED 10,000.00"],
+    serviceCharges: ["Service Charges ( 5% )", "AED 30.00"],
+    vat: ["VAT ( 5% )", "AED 10.00"],
+  },
+  {
+    paidAmount: ["Paid Amount", "AED 10,699.00"],
+  },
+];
+
+//
 
 export default function Home() {
   const { isMobile, isTablet } = useResponsive();
 
-  // const highlightedOrderProps = ['paidAmount']; {/* For future development*/ }
+  const highlightedOrderProps = ["paidAmount"];
 
   return (
     <Stack
@@ -42,9 +66,6 @@ export default function Home() {
         p: 6,
       }}
     >
-      {/* Divider  */}
-      <Divider sx={{ borderColor: "#242424", my: 2 }} />
-
       {/* Summary Cards Section */}
       <Stack
         sx={{
@@ -66,39 +87,25 @@ export default function Home() {
             align="left"
           />
         ))}
+      </Stack>
 
-        {/* Summary Card with payment summary For future development*/}
-        {/* <SummaryCard
-              title="Payment Summary"
-              summary={orderSummaryData}
-              highlightedProperties={highlightedOrderProps}
-              align="right"
-            /> */}
+      {/* Summary Card with payment summary For future development*/}
+      <Stack sx={{ mt: 2, display: "flex", flexDirection: "row", gap: 5 }}>
+        <SummaryCard
+          title="Payment Summary"
+          summary={orderSummaryData}
+          highlightedProperties={highlightedOrderProps}
+          align="right"
+          divider={["vat"]}
+        />
+        <SummaryCard
+          title="Payment Summary"
+          summary={orderSummaryData1}
+          highlightedProperties={highlightedOrderProps}
+          align="right"
+          divider={[`paidAmount`, `serviceCharges`, "vat"]}
+        />
       </Stack>
     </Stack>
   );
 }
-
-{
-  /* For future development*/
-}
-// // Sample data for SummaryCard
-// const travelerData = [
-//   {
-//     travelerName: 'Tom',
-//     email: 'tom@gmail.com',
-//     phoneNumber: '+9172135412554'
-//   }
-// ];
-
-// const orderSummaryData = [
-//   {
-//     totalAmount: 'AED 10,000.00',
-//     serviceCharges: 'AED 30.00',
-//     vat: 'AED 10.00',
-//     divider_one: true
-//   },
-//   {
-//     paidAmount: 'AED 10,699.00'
-//   }
-// ];

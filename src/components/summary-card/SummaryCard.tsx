@@ -21,6 +21,7 @@ interface SummaryCardProps {
   title: string;
   summary: SummaryItem[];
   highlightedProperties?: string[];
+  divider?: string[];
   align?: "left" | "right";
 }
 
@@ -29,16 +30,9 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
   summary,
   highlightedProperties = [],
   align = "left",
+  divider,
 }) => {
   const { isMobile, isTablet, isDesktop } = useResponsive();
-
-  const formatLabel = (key: string): string => {
-    // Convert camelCase to readable format
-    return key
-      .replace(/([A-Z])/g, " $1")
-      .replace(/^./, (str) => str.toUpperCase())
-      .trim();
-  };
 
   const renderSummaryContent = () => {
     const content: React.ReactNode[] = [];
@@ -47,16 +41,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
       const entries = Object.entries(item);
 
       entries.forEach(([key, value], entryIndex) => {
-        // Handle divider keys
-        if (key.startsWith("divider_")) {
-          content.push(
-            <StyledDivider key={`divider-${itemIndex}-${entryIndex}`} />
-          );
-          return;
-        }
-
         const isHighlighted = highlightedProperties.includes(key);
-        const label = formatLabel(key);
 
         if (isHighlighted) {
           // Render highlighted items in a special row (like totals)
@@ -69,12 +54,13 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
               isdesktop={isDesktop}
             >
               <LabelText
-                align={align}
+                align={"left"}
                 ismobile={isMobile}
                 istablet={isTablet}
+                ishighlighted={true}
                 isdesktop={isDesktop}
               >
-                {label}
+                {String(value[0])}
               </LabelText>
               <ValueText
                 ishighlighted={true}
@@ -83,7 +69,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
                 istablet={isTablet}
                 isdesktop={isDesktop}
               >
-                {String(value)}
+                {String(value[1])}
               </ValueText>
             </HighlightedRow>
           );
@@ -98,12 +84,12 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
               isdesktop={isDesktop}
             >
               <LabelText
-                align={align}
+                // align={align}
                 ismobile={isMobile}
                 istablet={isTablet}
                 isdesktop={isDesktop}
               >
-                {label}
+                {String(value[0])}
               </LabelText>
               <ValueText
                 align={align}
@@ -111,10 +97,16 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
                 istablet={isTablet}
                 isdesktop={isDesktop}
               >
-                {String(value)}
+                {String(value[1])}
               </ValueText>
             </DataRow>
           );
+          // Check if the key matches the keys in the divider prop
+          if (divider?.includes(key)) {
+            // If it does, push a divider after this row
+            const dividerKey = `divider-${itemIndex}-${entryIndex}`;
+            content.push(<StyledDivider key={dividerKey} />);
+          }
         }
       });
     });
