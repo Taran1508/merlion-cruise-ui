@@ -12,16 +12,18 @@ export const StepperContainer = styled(Stack, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
 })<ResponsiveProps>(({ theme, ismobile, istablet }) => ({
-  display: "inline-flex",
-  alignItems: "center",
-  gap: ismobile ? "4px" : "8px",
+  display: "flex",
+  flexDirection: ismobile ? "column" : "row",
+  alignItems: ismobile ? "stretch" : "center",
+  gap: ismobile || istablet ? "" : "8px",
   width: "100%",
-  maxWidth: ismobile ? "100%" : istablet ? "90%" : "829px",
-  height: "40px",
+  maxWidth: "100%",
+  minHeight: "40px",
   fontFamily: "Poppins, sans-serif",
-  flexWrap: ismobile ? "wrap" : "nowrap",
-  justifyContent: ismobile ? "center" : "flex-start",
-  padding: ismobile ? "8px" : "0",
+  flexWrap: istablet ? "wrap" : "nowrap",
+  justifyContent: ismobile ? "flex-start" : "center",
+  padding: ismobile ? "8px 0" : istablet ? "4px 2px" : "0",
+  overflow: "visible",
 }));
 
 interface StepItemProps extends ResponsiveProps {
@@ -45,8 +47,12 @@ export const StepItem = styled(Box, {
       display: "flex",
       padding: ismobile
         ? isUpcoming
-          ? "6px 0"
-          : "6px 8px"
+          ? "6px 8px"
+          : "8px 12px"
+        : istablet
+        ? isUpcoming
+          ? "7px 10px"
+          : "6px 4px"
         : isUpcoming
         ? "8px 0"
         : "8px 16px",
@@ -57,9 +63,10 @@ export const StepItem = styled(Box, {
       border: isactive ? "1px solid #4D4D4D" : "none",
       cursor: isclickable ? "pointer" : "default",
       transition: "all 0.2s ease-in-out",
-      minWidth: ismobile ? "auto" : "fit-content",
-      width: ismobile ? "100%" : "auto",
-      marginBottom: ismobile ? "4px" : "0",
+      minWidth: ismobile ? "100%" : "fit-content",
+      width: ismobile ? "100%" : "5%",
+      whiteSpace: "nowrap",
+      margin: 0,
 
       "&:hover": isclickable
         ? {
@@ -79,26 +86,40 @@ export const StepLabel = styled("div", {
     prop !== "isactive" &&
     prop !== "iscompleted",
 })<ResponsiveProps & { isactive?: boolean; iscompleted?: boolean }>(
-  ({ ismobile, istablet, isactive, iscompleted }) => ({
-    color: isactive ? "#F6F6F6" : iscompleted ? "#A0A0A0" : "#F6F6F6",
-    fontFamily: "Poppins, sans-serif",
-    fontSize: ismobile ? "12px" : "14px",
-    fontWeight: 400,
-    lineHeight: "normal",
-    textTransform: "capitalize",
-    whiteSpace: "nowrap",
-    textAlign: "center",
-  })
+  ({ ismobile, istablet, isactive, iscompleted }) => {
+    const isUpcoming = !isactive && !iscompleted;
+    return {
+      color: isactive ? "#F6F6F6" : iscompleted ? "#A0A0A0" : "#F6F6F6",
+      fontFamily: "Poppins, sans-serif",
+      fontSize: ismobile ? "12px" : istablet ? "10px" : "14px",
+      padding: ismobile
+        ? isUpcoming
+          ? "2px 4px"
+          : "2px 4px"
+        : istablet
+        ? isUpcoming
+          ? "2px 4px"
+          : "2px 4px"
+        : isUpcoming
+        ? ""
+        : "",
+      fontWeight: 400,
+      lineHeight: "normal",
+      textTransform: "capitalize",
+      whiteSpace: "nowrap",
+      textAlign: "center",
+    };
+  }
 );
 
 export const ChevronWrapper = styled("div", {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})<ResponsiveProps>(({ ismobile }) => ({
+})<ResponsiveProps>(({ ismobile, istablet }) => ({
   display: ismobile ? "none" : "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "20px",
+  width: ismobile ? "12px" : istablet ? "16px" : "20px",
   height: "20px",
   flexShrink: 0,
 }));
@@ -113,26 +134,15 @@ export const ChevronIcon = styled("svg")({
   },
 });
 
-export const MobileStepIndicator = styled("div", {
+export const VerticalConnector = styled("div", {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
 })<ResponsiveProps>(({ ismobile }) => ({
-  display: ismobile ? "flex" : "none",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "8px",
-  marginTop: "8px",
-  width: "100%",
+  display: ismobile ? "block" : "none",
+  alignSelf: "center",
+  width: "1px",
+  height: "12px",
+  backgroundColor: "#4D4D4D",
 }));
 
-export const MobileDot = styled("div", {
-  shouldForwardProp: (prop) => prop !== "isactive" && prop !== "iscompleted",
-})<{ isactive?: boolean; iscompleted?: boolean }>(
-  ({ isactive, iscompleted }) => ({
-    width: "8px",
-    height: "8px",
-    borderRadius: "50%",
-    backgroundColor: isactive ? "#F6F6F6" : iscompleted ? "#A0A0A0" : "#4D4D4D",
-    transition: "background-color 0.2s ease-in-out",
-  })
-);
+// Mobile step indicators removed as per request

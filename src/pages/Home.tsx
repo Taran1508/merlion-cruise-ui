@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
+import useResponsive from "@/hooks/UseResponsive";
 import type { StepItem } from "@/types/stepItem";
 import { Stack } from "@mui/material";
 import { useState } from "react";
@@ -13,6 +15,7 @@ const initialSteps: StepItem[] = [
 
 export default function Home() {
   const [steps, setSteps] = useState<StepItem[]>(initialSteps);
+  const { isMobile, isTablet, isDesktop } = useResponsive();
 
   const handleStepClick = (stepId: number) => {
     setSteps((prev) =>
@@ -30,7 +33,10 @@ export default function Home() {
       sx={{
         display: "flex",
         alignItems: "center",
+        width: isMobile || isTablet ? "100%" : "100%",
+        justifyContent: "center",
         my: 10,
+        p: 6,
       }}
     >
       <MerlionStepper steps={steps} handleStepClick={handleStepClick} />

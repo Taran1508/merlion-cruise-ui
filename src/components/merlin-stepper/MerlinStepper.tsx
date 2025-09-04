@@ -5,8 +5,7 @@ import {
   StepLabel,
   ChevronWrapper,
   ChevronIcon,
-  MobileStepIndicator,
-  MobileDot,
+  VerticalConnector,
 } from "./merlin-stepper.styles";
 import useResponsive from "@/hooks/UseResponsive";
 
@@ -38,10 +37,7 @@ const MerlionStepper: React.FC<MerlionStepperProps> = ({
   steps,
   handleStepClick,
 }) => {
-  const { isMobile } = useResponsive();
-  const viewport = typeof window !== "undefined" ? window.innerWidth : 1024;
-  const isTablet = !isMobile && viewport <= 1024;
-  const isDesktop = !isMobile && !isTablet;
+  const { isMobile, isDesktop, isTablet } = useResponsive();
 
   const handleStepItemClick = (step: Step) => {
     handleStepClick(step.id);
@@ -77,34 +73,28 @@ const MerlionStepper: React.FC<MerlionStepperProps> = ({
               </StepLabel>
             </StepItem>
 
-            {/* Render chevron between steps (not after last step) */}
+            {/* Connector between steps */}
             {index < steps.length - 1 && (
-              <ChevronWrapper
-                ismobile={isMobile}
-                istablet={isTablet}
-                isdesktop={isDesktop}
-              >
-                <ChevronRight />
-              </ChevronWrapper>
+              <>
+                {/* Desktop chevron */}
+                <ChevronWrapper
+                  ismobile={isMobile}
+                  istablet={isTablet}
+                  isdesktop={isDesktop}
+                >
+                  <ChevronRight />
+                </ChevronWrapper>
+                {/* Mobile vertical connector */}
+                <VerticalConnector
+                  ismobile={isMobile}
+                  istablet={isTablet}
+                  isdesktop={isDesktop}
+                />
+              </>
             )}
           </React.Fragment>
         ))}
       </StepperContainer>
-
-      {/* Mobile step indicators (dots) */}
-      <MobileStepIndicator
-        ismobile={isMobile}
-        istablet={isTablet}
-        isdesktop={isDesktop}
-      >
-        {steps.map((step) => (
-          <MobileDot
-            key={`dot-${step.id}`}
-            isactive={step.isActive}
-            iscompleted={step.isCompleted}
-          />
-        ))}
-      </MobileStepIndicator>
     </>
   );
 };

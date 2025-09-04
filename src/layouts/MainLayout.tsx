@@ -15,7 +15,7 @@ export default function MainLayout() {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#060606",
-        overflowX: "hidden", // prevents horizontal scroll
+        overflowX: "hidden",
       }}
     >
       {/* <Header /> */}
@@ -26,6 +26,7 @@ export default function MainLayout() {
           backgroundColor: "#060606",
           width: "100%",
           height: "100%",
+
           // px: isMobile ? 1 : isTablet ? 2 : 4, // responsive padding
           py: isMobile ? 1 : 2, // responsive vertical padding
           overflowY: "auto", // ensures scrollable content without white gaps
