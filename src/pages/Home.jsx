@@ -19,9 +19,6 @@ const travelerData = [
     email: ["Email", "tom@gmail.com"],
     phoneNumber: ["Phone Number", "+9172135412554"],
   },
-  // {
-  //   divider_one: true, // this will render an empty co-traveller component with divider
-  // },
 ];
 
 // Payment Data 1

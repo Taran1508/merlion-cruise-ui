@@ -2,32 +2,6 @@
 import { Box, Button } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Stack } from "@mui/material";
-import MerlionTable, {
-  type Column,
-} from "@/components/merlion-table/MerlionTable";
-
-const sampleColumns: Column[] = [
-  {
-    id: "orderId",
-    label: "Order ID",
-    minWidth: 200,
-  },
-  {
-    id: "dateTime",
-    label: "Date & Time",
-    minWidth: 260,
-  },
-  {
-    id: "method",
-    label: "Method",
-    minWidth: 240,
-  },
-  {
-    id: "amount",
-    label: "Amount",
-    minWidth: 200,
-  },
-];
 
 const sampleData = [
   {
@@ -141,15 +115,15 @@ const sampleData = [
 ];
 
 export default function MyOrders() {
-  const handleRowClick = (rowData: any, column: Column) => {
+  const handleRowClick = (rowData, column) => {
     console.log("Row clicked:", rowData, "Column:", column);
   };
 
-  const handleButtonClick = (buttonValue: string, rowData: any) => {
+  const handleButtonClick = (buttonValue, rowData) => {
     console.log("Button clicked:", buttonValue, "Row data:", rowData);
   };
 
-  const handlePageChange = (page: number, pageSize: number) => {
+  const handlePageChange = (page, pageSize) => {
     console.log("Page changed:", page, "Page size:", pageSize);
   };
 

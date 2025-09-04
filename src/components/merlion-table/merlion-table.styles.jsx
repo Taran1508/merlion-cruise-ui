@@ -14,42 +14,42 @@ import {
 import { Search, CalendarToday } from "@mui/icons-material";
 import useResponsive from "@/hooks/UseResponsive";
 
-interface ResponsiveProps {
-  ismobile?: boolean;
-  istablet?: boolean;
-  isdesktop?: boolean;
-}
+export const Parent =
+  styled(Stack, {
+    shouldForwardProp: (prop) =>
+      prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
+  }) <
+  ResponsiveProps >
+  (({ theme, ismobile, istablet }) => ({
+    width: "100%",
+    maxWidth: ismobile ? "100%" : "1320px",
+    margin: "0 auto",
+    padding: ismobile ? "12px 8px" : istablet ? "16px 12px" : "20px 12px",
+    fontFamily: "Poppins, sans-serif",
+    display: "flex",
+    justifyContent: "space-between",
+    borderRadius: "12px",
+  }));
 
-export const Parent = styled(Stack, {
-  shouldForwardProp: (prop) =>
-    prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})<ResponsiveProps>(({ theme, ismobile, istablet }) => ({
-  width: "100%",
-  maxWidth: ismobile ? "100%" : "1320px",
-  margin: "0 auto",
-  padding: ismobile ? "12px 8px" : istablet ? "16px 12px" : "20px 12px",
-  fontFamily: "Poppins, sans-serif",
-  display: "flex",
-  justifyContent: "space-between",
-  borderRadius: "12px",
-}));
-
-export const Root = styled(Stack, {
-  shouldForwardProp: (prop) => prop !== "ismobile" && prop !== "istablet",
-})<ResponsiveProps>(({ theme, ismobile }) => ({
-  width: "100%",
-  maxWidth: "1320px",
-  maxHeight: ismobile ? "none" : "637px",
-  margin: "0 auto",
-  padding: theme.spacing(ismobile ? 1 : 2),
-  fontFamily: "Poppins, sans-serif",
-  display: "flex",
-  justifyContent: "space-between",
-  backgroundColor: "#202020",
-  border: "1px solid #242424",
-  borderRadius: "12px",
-  boxSizing: "border-box",
-}));
+export const Root =
+  styled(Stack, {
+    shouldForwardProp: (prop) => prop !== "ismobile" && prop !== "istablet",
+  }) <
+  ResponsiveProps >
+  (({ theme, ismobile }) => ({
+    width: "100%",
+    maxWidth: "1320px",
+    maxHeight: ismobile ? "none" : "637px",
+    margin: "0 auto",
+    padding: theme.spacing(ismobile ? 1 : 2),
+    fontFamily: "Poppins, sans-serif",
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#202020",
+    border: "1px solid #242424",
+    borderRadius: "12px",
+    boxSizing: "border-box",
+  }));
 
 export const HeaderBar = styled(Stack)(({ theme }) => ({
   display: "flex",
@@ -126,10 +126,8 @@ export const HeaderCell = styled(TableCell)(({ theme }) => ({
   padding: "12px 16px",
   borderBottom: "none",
 }));
-interface StyledRowProps {
-  even?: boolean;
-}
-export const StyledRow = styled(TableRow)<StyledRowProps>(({ even }) => ({
+
+export const StyledRow = styled(TableRow)(({ even }) => ({
   backgroundColor: "#202020",
   maxWidth: "1288px",
   maxHeight: "52px",
@@ -215,12 +213,10 @@ export const PaginationNumbers = styled("div")(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
 }));
-interface PageButtonProps {
-  selected?: boolean;
-}
+
 export const PageButton = styled("button", {
   shouldForwardProp: (prop) => prop !== "selected",
-})<PageButtonProps>(({ selected }) => ({
+})(({ selected }) => ({
   display: "flex",
   width: "35.128px",
   padding: "8.516px 12.774px",

@@ -2,21 +2,10 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography, Divider } from "@mui/material";
 
-interface ResponsiveProps {
-  ismobile?: boolean;
-  istablet?: boolean;
-  islg?: boolean;
-  isdesktop?: boolean;
-}
-
-interface AlignProps {
-  align?: "left" | "right";
-}
-
 export const SummaryCardContainer = styled(Box, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})<ResponsiveProps>(({ theme, ismobile, istablet }) => ({
+})(({ theme, ismobile, istablet }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
@@ -28,7 +17,7 @@ export const SummaryCardContainer = styled(Box, {
 export const CardTitle = styled(Typography, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})<ResponsiveProps>(({ ismobile, istablet }) => ({
+})(({ ismobile, istablet }) => ({
   color: "#FFF",
   fontFamily: "Poppins, sans-serif",
   fontSize: ismobile ? "12px" : istablet ? "14px" : "16px",
@@ -44,7 +33,7 @@ export const CardContent = styled(Box, {
     prop !== "istablet" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps>(({ theme, ismobile, istablet, align }) => ({
+})(({ theme, ismobile, istablet, align }) => ({
   display: "flex",
   flexDirection: ismobile ? "column" : "row",
   alignItems: "flex-start",
@@ -65,7 +54,7 @@ export const DataColumn = styled(Box, {
     prop !== "istablet" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps>(({ ismobile, align }) => ({
+})(({ ismobile, align }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: align === "right" ? "flex-end" : "flex-start",
@@ -80,7 +69,7 @@ export const DataRow = styled(Box, {
     prop !== "istablet" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps>(({ ismobile, align }) => ({
+})(({ ismobile, align }) => ({
   display: "flex",
   flexDirection: ismobile ? "column" : "row",
   alignItems: ismobile
@@ -101,20 +90,18 @@ export const LabelText = styled(Typography, {
     prop !== "isdesktop" &&
     prop !== "ishighlighted" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps & { ishighlighted?: boolean }>(
-  ({ ishighlighted, ismobile, istablet, align }) => ({
-    color: ishighlighted ? "#FFF" : "#848484",
-    paddingLeft: ishighlighted ? "8px" : "",
-    fontFamily: "Poppins, sans-serif",
-    fontSize: ismobile ? "12px" : istablet ? "14px" : "16px",
-    fontWeight: ishighlighted ? 600 : 400,
-    lineHeight: "normal",
-    textTransform: "capitalize",
-    minWidth: ismobile ? "auto" : "144px",
-    textAlign: align === "right" ? "right" : "left",
-    flexShrink: 0,
-  })
-);
+})(({ ishighlighted, ismobile, istablet, align }) => ({
+  color: ishighlighted ? "#FFF" : "#848484",
+  paddingLeft: ishighlighted ? "8px" : "",
+  fontFamily: "Poppins, sans-serif",
+  fontSize: ismobile ? "12px" : istablet ? "14px" : "16px",
+  fontWeight: ishighlighted ? 600 : 400,
+  lineHeight: "normal",
+  textTransform: "capitalize",
+  minWidth: ismobile ? "auto" : "144px",
+  textAlign: align === "right" ? "right" : "left",
+  flexShrink: 0,
+}));
 
 export const ValueText = styled(Typography, {
   shouldForwardProp: (prop) =>
@@ -124,22 +111,20 @@ export const ValueText = styled(Typography, {
     prop !== "isdesktop" &&
     prop !== "ishighlighted" &&
     prop !== "align",
-})<ResponsiveProps & { ishighlighted?: boolean; align?: "left" | "right" }>(
-  ({ ismobile, istablet, islg, ishighlighted, align }) => ({
-    color: "#FFF",
-    fontFamily: "Poppins, sans-serif",
-    fontSize: ismobile ? "12px" : istablet ? "14px" : islg ? "12px" : "16px",
-    fontWeight: ishighlighted ? 700 : 400,
-    lineHeight: "normal",
-    textTransform: ishighlighted ? "uppercase" : "capitalize",
-    backgroundColor: "transparent",
-    padding: ishighlighted ? "4px 8px" : "0",
-    borderRadius: ishighlighted ? "4px" : "0",
-    textAlign: align === "right" ? "right" : "left",
-    flex: 1,
-    wordBreak: "break-word",
-  })
-);
+})(({ ismobile, istablet, islg, ishighlighted, align }) => ({
+  color: "#FFF",
+  fontFamily: "Poppins, sans-serif",
+  fontSize: ismobile ? "12px" : istablet ? "14px" : islg ? "12px" : "16px",
+  fontWeight: ishighlighted ? 700 : 400,
+  lineHeight: "normal",
+  textTransform: ishighlighted ? "uppercase" : "capitalize",
+  backgroundColor: "transparent",
+  padding: ishighlighted ? "4px 8px" : "0",
+  borderRadius: ishighlighted ? "4px" : "0",
+  textAlign: align === "right" ? "right" : "left",
+  flex: 1,
+  wordBreak: "break-word",
+}));
 
 export const StyledDivider = styled(Divider)(({ theme }) => ({
   width: "100%",
@@ -153,7 +138,7 @@ export const HighlightedRow = styled(Box, {
     prop !== "istablet" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})<ResponsiveProps & AlignProps>(({ align }) => ({
+})(({ align }) => ({
   display: "flex",
   justifyContent: "start",
   alignItems: "center",

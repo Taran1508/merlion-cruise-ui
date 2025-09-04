@@ -2,7 +2,6 @@ import Footer from "../components/Footer";
 import Banner from "../components/Banner";
 import TabsSwitcher from "../components/TabsSwitcher";
 import MediaGrid from "../components/MediaGrid";
-import type { MediaItem } from "../types/media";
 import { Box } from "@mui/material";
 import p1 from "../assets/photos/1.png";
 import p2 from "../assets/photos/2.jpg";
@@ -10,7 +9,7 @@ import p3 from "../assets/photos/3.jpg";
 import p4 from "../assets/photos/4.png";
 import p5 from "../assets/photos/5.png";
 
-const photoItems: MediaItem[] = [
+const photoItems = [
   { src: `${p1}`, type: "photo" },
   { src: `${p2}`, type: "photo" },
   { src: `${p3}`, type: "photo" },

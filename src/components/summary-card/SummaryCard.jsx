@@ -13,19 +13,7 @@ import {
 } from "./summary-card.styles";
 import useResponsive from "@/hooks/UseResponsive";
 
-interface SummaryItem {
-  [key: string]: any;
-}
-
-interface SummaryCardProps {
-  title: string;
-  summary: SummaryItem[];
-  highlightedProperties?: string[];
-  divider?: string[];
-  align?: "left" | "right";
-}
-
-const SummaryCard: React.FC<SummaryCardProps> = ({
+const SummaryCard = ({
   title,
   summary,
   highlightedProperties = [],
@@ -35,7 +23,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
   const renderSummaryContent = () => {
-    const content: React.ReactNode[] = [];
+    const content = [];
 
     summary.forEach((item, itemIndex) => {
       const entries = Object.entries(item);
