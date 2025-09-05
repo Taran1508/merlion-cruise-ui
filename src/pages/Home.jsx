@@ -1,20 +1,52 @@
-import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
-
-const steps = [
-  { id: 1, label: "Select Package", isCompleted: true, isActive: false },
-  { id: 2, label: "Passenger Details", isCompleted: true, isActive: false },
-  { id: 3, label: "Add Personal Staff", isCompleted: true, isActive: false },
-  { id: 4, label: "Review", isCompleted: false, isActive: true },
-  { id: 5, label: "Confirmation", isCompleted: false, isActive: false },
-];
+import { Stack, Typography } from "@mui/material";
+import InvitationCard from "../components/invitation-card/InvitationCard";
 
 export default function Home() {
+  // Sample data for InvitationCard - Different status examples
+  const invitationPendingData = {
+    invitedBy: ["Invited By", "Invited by tom"],
+    data: {
+      hostName: ["Host Name", "Tom"],
+      email: ["Email", "tom@gmail.com"],
+      phoneNumber: ["Phone Number", "+9172135412554"],
+    },
+    eventDetails: {
+      date: "Sep, 25, 2025",
+      time: "05:00 PM",
+      location: "Dubai",
+      onAccept: () => console.log("Invitation accepted"),
+      onDecline: () => console.log("Invitation declined"),
+      status: "pending",
+    },
+  };
   return (
     <div>
-      <MerlionStepper
-        steps={steps}
-        handleStepClick={(stepId) => console.log("Step clicked:", stepId)}
-      />
+      {/* Invitation Card Section */}
+      <Stack sx={{ gap: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 700,
+            textTransform: "capitalize",
+          }}
+        >
+          Invitation Card
+        </Typography>
+        <Stack sx={{ gap: 3, alignItems: "center" }}>
+          <Typography
+            sx={{
+              color: "#FFFFFF",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "16px",
+            }}
+          >
+            Click Accept or Decline to see the status change
+          </Typography>
+          <InvitationCard sections={invitationPendingData} />
+        </Stack>
+      </Stack>
     </div>
   );
 }
