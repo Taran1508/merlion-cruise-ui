@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
 import useResponsive from "@/hooks/UseResponsive";
-import type { StepItem } from "@/types/stepItem";
 import { Stack } from "@mui/material";
 import { useState } from "react";
 
-const initialSteps: StepItem[] = [
+const initialSteps = [
   { id: 1, label: "Select Package", isCompleted: true, isActive: false },
   { id: 2, label: "Passenger Details", isCompleted: true, isActive: false },
   { id: 3, label: "Add Personal Staff", isCompleted: true, isActive: false },
@@ -14,10 +13,10 @@ const initialSteps: StepItem[] = [
 ];
 
 export default function Home() {
-  const [steps, setSteps] = useState<StepItem[]>(initialSteps);
+  const [steps, setSteps] = useState(initialSteps);
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
-  const handleStepClick = (stepId: number) => {
+  const handleStepClick = (stepId) => {
     setSteps((prev) =>
       prev.map((s) => {
         if (s.id < stepId) return { ...s, isCompleted: true, isActive: false };

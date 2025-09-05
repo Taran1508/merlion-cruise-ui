@@ -9,19 +9,7 @@ import {
 } from "./merlin-stepper.styles";
 import useResponsive from "@/hooks/UseResponsive";
 
-interface Step {
-  id: number;
-  label: string;
-  isActive: boolean;
-  isCompleted: boolean;
-}
-
-interface MerlionStepperProps {
-  steps: Step[];
-  handleStepClick: (stepId: number) => void;
-}
-
-const ChevronRight: React.FC = () => (
+const ChevronRight = () => (
   <ChevronIcon
     width="20"
     height="20"
@@ -33,13 +21,10 @@ const ChevronRight: React.FC = () => (
   </ChevronIcon>
 );
 
-const MerlionStepper: React.FC<MerlionStepperProps> = ({
-  steps,
-  handleStepClick,
-}) => {
+const MerlionStepper = ({ steps, handleStepClick }) => {
   const { isMobile, isDesktop, isTablet } = useResponsive();
 
-  const handleStepItemClick = (step: Step) => {
+  const handleStepItemClick = (step) => {
     handleStepClick(step.id);
   };
 

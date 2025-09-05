@@ -14,16 +14,10 @@ import {
 import { Search, CalendarToday } from "@mui/icons-material";
 import useResponsive from "@/hooks/UseResponsive";
 
-interface ResponsiveProps {
-  ismobile?: boolean;
-  istablet?: boolean;
-  isdesktop?: boolean;
-}
-
 export const Parent = styled(Stack, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})<ResponsiveProps>(({ theme, ismobile, istablet }) => ({
+})(({ theme, ismobile, istablet }) => ({
   width: "100%",
   maxWidth: ismobile ? "100%" : "1320px",
   margin: "0 auto",
@@ -36,7 +30,7 @@ export const Parent = styled(Stack, {
 
 export const Root = styled(Stack, {
   shouldForwardProp: (prop) => prop !== "ismobile" && prop !== "istablet",
-})<ResponsiveProps>(({ theme, ismobile }) => ({
+})(({ theme, ismobile }) => ({
   width: "100%",
   maxWidth: "1320px",
   maxHeight: ismobile ? "none" : "637px",
@@ -126,10 +120,8 @@ export const HeaderCell = styled(TableCell)(({ theme }) => ({
   padding: "12px 16px",
   borderBottom: "none",
 }));
-interface StyledRowProps {
-  even?: boolean;
-}
-export const StyledRow = styled(TableRow)<StyledRowProps>(({ even }) => ({
+
+export const StyledRow = styled(TableRow)(({ even }) => ({
   backgroundColor: "#202020",
   maxWidth: "1288px",
   maxHeight: "52px",
@@ -215,12 +207,10 @@ export const PaginationNumbers = styled("div")(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
 }));
-interface PageButtonProps {
-  selected?: boolean;
-}
+
 export const PageButton = styled("button", {
   shouldForwardProp: (prop) => prop !== "selected",
-})<PageButtonProps>(({ selected }) => ({
+})(({ selected }) => ({
   display: "flex",
   width: "35.128px",
   padding: "8.516px 12.774px",
