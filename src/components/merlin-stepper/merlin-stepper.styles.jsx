@@ -97,6 +97,7 @@ export const ChevronWrapper = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   width: ismobile ? "12px" : istablet ? "16px" : "20px",
+
   height: "20px",
   flexShrink: 0,
 }));
