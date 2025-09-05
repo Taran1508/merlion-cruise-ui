@@ -5,6 +5,7 @@ import { useState } from "react";
 import BookingStatusCard from "@/components/booking-status-card/BookingCard";
 import { Stack, Typography } from "@mui/material";
 import InvitationCard from "../components/invitation-card/InvitationCard";
+import SummaryCard from "@/components/summary-card/SummaryCard";
 
 const initialSteps = [
   { id: 1, label: "Select Package", isCompleted: true, isActive: false },
