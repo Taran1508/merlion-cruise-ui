@@ -1,12 +1,7 @@
 import { Box } from "@mui/material";
-import type { MediaItem } from "../types/media";
 import MediaCard from "./MediaCard";
 
-interface MediaGridProps {
-  items: MediaItem[];
-}
-
-export default function MediaGrid({ items }: MediaGridProps) {
+export default function MediaGrid({ items }) {
   return (
     <Box
       sx={{

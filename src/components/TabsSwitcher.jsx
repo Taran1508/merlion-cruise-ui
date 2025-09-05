@@ -1,10 +1,6 @@
 import { Tabs, Tab, Box } from "@mui/material";
 
-interface TabsSwitcherProps {
-  activeTab: "Photos" | "Videos";
-}
-
-export default function TabsSwitcher({ activeTab }: TabsSwitcherProps) {
+export default function TabsSwitcher({ activeTab }) {
   return (
     <Box sx={{ display: "flex", justifyContent: "start", mt: 3 }}>
       <Tabs

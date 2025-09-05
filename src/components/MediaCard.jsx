@@ -1,13 +1,7 @@
 import { Card, CardMedia, Box } from "@mui/material";
-import type { MediaType } from "../types/media";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
-interface MediaCardProps {
-  src: string;
-  type: MediaType;
-}
-
-export default function MediaCard({ src, type }: MediaCardProps) {
+export default function MediaCard({ src, type }) {
   return (
     <Card
       sx={{

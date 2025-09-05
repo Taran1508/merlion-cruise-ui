@@ -33,26 +33,7 @@ import {
 } from "./merlion-table.styles";
 import useResponsive from "@/hooks/UseResponsive";
 
-export interface Column {
-  id: string;
-  label: string;
-  minWidth?: number;
-  align?: "left" | "center" | "right";
-  format?: (value: any) => string;
-}
-
-export interface MerlionTableProps {
-  title: string;
-  columns: Column[];
-  data: any[];
-  onClickRow?: (rowData: any, column: Column) => void;
-  onClickButton?: (buttonValue: string, rowData: any) => void;
-  hidePagination?: boolean;
-  hideSearchbar?: boolean;
-  onChangePage?: (page: number, pageSize: number) => void;
-}
-
-const MerlionTable: React.FC<MerlionTableProps> = ({
+const MerlionTable = ({
   title,
   columns,
   data,
@@ -91,16 +72,16 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
 
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
-  const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
+  const handlePageChange = (_, page) => {
     setCurrentPage(page);
     onChangePage(page, rowsPerPage);
   };
 
-  const handleRowClick = (rowData: any, column: Column) => {
+  const handleRowClick = (rowData, column) => {
     onClickRow(rowData, column);
   };
 
-  const handleButtonClick = (buttonValue: string, rowData: any) => {
+  const handleButtonClick = (buttonValue, rowData) => {
     onClickButton(buttonValue, rowData);
   };
 
@@ -127,7 +108,7 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
             <FormControl>
               <YearSelect
                 value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value as string)}
+                onChange={(e) => setSelectedYear(e.target.value)}
                 startAdornment={
                   <InputAdornment position="start">
                     <CalendarIcon />
@@ -197,7 +178,7 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
             <PaginationContainer>
               <ArrowButton
                 onClick={() =>
-                  handlePageChange(null as any, Math.max(1, currentPage - 1))
+                  handlePageChange(null, Math.max(1, currentPage - 1))
                 }
                 disabled={currentPage <= 1}
               >
@@ -221,7 +202,7 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
                   <PageButton
                     key={pageNum}
                     selected={pageNum === currentPage}
-                    onClick={() => handlePageChange(null as any, pageNum)}
+                    onClick={() => handlePageChange(null, pageNum)}
                   >
                     {pageNum}
                   </PageButton>
@@ -236,7 +217,7 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
                 {totalPages > 5 && (
                   <PageButton
                     selected={currentPage === totalPages}
-                    onClick={() => handlePageChange(null as any, totalPages)}
+                    onClick={() => handlePageChange(null, totalPages)}
                   >
                     {totalPages}
                   </PageButton>
@@ -245,10 +226,7 @@ const MerlionTable: React.FC<MerlionTableProps> = ({
 
               <ArrowButton
                 onClick={() =>
-                  handlePageChange(
-                    null as any,
-                    Math.min(totalPages, currentPage + 1)
-                  )
+                  handlePageChange(null, Math.min(totalPages, currentPage + 1))
                 }
                 disabled={currentPage >= totalPages}
               >

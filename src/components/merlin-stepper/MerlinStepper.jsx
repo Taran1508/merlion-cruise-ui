@@ -10,19 +10,7 @@ import {
   MobileDot,
 } from "./merlin-stepper.styles";
 
-interface Step {
-  id: number;
-  label: string;
-  isActive: boolean;
-  isCompleted: boolean;
-}
-
-interface MerlionStepperProps {
-  steps: Step[];
-  handleStepClick: (stepId: number) => void;
-}
-
-const ChevronRight: React.FC = () => (
+const ChevronRight = () => (
   <ChevronIcon
     width="20"
     height="20"
@@ -34,13 +22,10 @@ const ChevronRight: React.FC = () => (
   </ChevronIcon>
 );
 
-const MerlionStepper: React.FC<MerlionStepperProps> = ({
-  steps,
-  handleStepClick,
-}) => {
+const MerlionStepper = ({ steps, handleStepClick }) => {
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
-  const handleStepItemClick = (step: Step) => {
+  const handleStepItemClick = (step) => {
     // Allow clicking on completed steps or the current active step
     if (step.isCompleted || step.isActive) {
       handleStepClick(step.id);

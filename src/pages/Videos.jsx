@@ -2,13 +2,12 @@ import Footer from "../components/Footer";
 import Banner from "../components/Banner";
 import TabsSwitcher from "../components/TabsSwitcher";
 import MediaGrid from "../components/MediaGrid";
-import type { MediaItem } from "../types/media";
 import { Box } from "@mui/material";
 
 import p2 from "../assets/photos/2.jpg";
 import p3 from "../assets/photos/3.jpg";
 
-const videoItems: MediaItem[] = [
+const videoItems = [
   { src: `${p2}`, type: "video" },
   { src: `${p3}`, type: "video" },
 ];
