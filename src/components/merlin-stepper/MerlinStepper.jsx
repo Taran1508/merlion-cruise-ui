@@ -1,14 +1,13 @@
 import React from "react";
-import useResponsive from "@/hooks/UseResponsive";
 import {
   StepperContainer,
   StepItem,
   StepLabel,
   ChevronWrapper,
   ChevronIcon,
-  MobileStepIndicator,
-  MobileDot,
+  VerticalConnector,
 } from "./merlin-stepper.styles";
+import useResponsive from "@/hooks/UseResponsive";
 
 const ChevronRight = () => (
   <ChevronIcon
@@ -23,13 +22,10 @@ const ChevronRight = () => (
 );
 
 const MerlionStepper = ({ steps, handleStepClick }) => {
-  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const { isMobile, isDesktop, isTablet } = useResponsive();
 
   const handleStepItemClick = (step) => {
-    // Allow clicking on completed steps or the current active step
-    if (step.isCompleted || step.isActive) {
-      handleStepClick(step.id);
-    }
+    handleStepClick(step.id);
   };
 
   return (
@@ -48,7 +44,7 @@ const MerlionStepper = ({ steps, handleStepClick }) => {
               isdesktop={isDesktop}
               isactive={step.isActive}
               iscompleted={step.isCompleted}
-              isclickable={step.isCompleted || step.isActive}
+              isclickable={true}
               onClick={() => handleStepItemClick(step)}
             >
               <StepLabel
@@ -62,34 +58,28 @@ const MerlionStepper = ({ steps, handleStepClick }) => {
               </StepLabel>
             </StepItem>
 
-            {/* Render chevron between steps (not after last step) */}
+            {/* Connector between steps */}
             {index < steps.length - 1 && (
-              <ChevronWrapper
-                ismobile={isMobile}
-                istablet={isTablet}
-                isdesktop={isDesktop}
-              >
-                <ChevronRight />
-              </ChevronWrapper>
+              <>
+                {/* Desktop chevron */}
+                <ChevronWrapper
+                  ismobile={isMobile}
+                  istablet={isTablet}
+                  isdesktop={isDesktop}
+                >
+                  <ChevronRight />
+                </ChevronWrapper>
+                {/* Mobile vertical connector */}
+                <VerticalConnector
+                  ismobile={isMobile}
+                  istablet={isTablet}
+                  isdesktop={isDesktop}
+                />
+              </>
             )}
           </React.Fragment>
         ))}
       </StepperContainer>
-
-      {/* Mobile step indicators (dots) */}
-      <MobileStepIndicator
-        ismobile={isMobile}
-        istablet={isTablet}
-        isdesktop={isDesktop}
-      >
-        {steps.map((step) => (
-          <MobileDot
-            key={`dot-${step.id}`}
-            isactive={step.isActive}
-            iscompleted={step.isCompleted}
-          />
-        ))}
-      </MobileStepIndicator>
     </>
   );
 };
