@@ -81,6 +81,7 @@ export const StepLabel = styled("div", {
       : isUpcoming
       ? ""
       : "",
+
     fontWeight: 400,
     lineHeight: "normal",
     textTransform: "capitalize",

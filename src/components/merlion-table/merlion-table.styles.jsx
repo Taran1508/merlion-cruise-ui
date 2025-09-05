@@ -14,36 +14,42 @@ import {
 import { Search, CalendarToday } from "@mui/icons-material";
 import useResponsive from "@/hooks/UseResponsive";
 
-export const Parent = styled(Stack, {
-  shouldForwardProp: (prop) =>
-    prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
-})(({ theme, ismobile, istablet }) => ({
-  width: "100%",
-  maxWidth: ismobile ? "100%" : "1320px",
-  margin: "0 auto",
-  padding: ismobile ? "12px 8px" : istablet ? "16px 12px" : "20px 12px",
-  fontFamily: "Poppins, sans-serif",
-  display: "flex",
-  justifyContent: "space-between",
-  borderRadius: "12px",
-}));
+export const Parent =
+  styled(Stack, {
+    shouldForwardProp: (prop) =>
+      prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
+  }) <
+  ResponsiveProps >
+  (({ theme, ismobile, istablet }) => ({
+    width: "100%",
+    maxWidth: ismobile ? "100%" : "1320px",
+    margin: "0 auto",
+    padding: ismobile ? "12px 8px" : istablet ? "16px 12px" : "20px 12px",
+    fontFamily: "Poppins, sans-serif",
+    display: "flex",
+    justifyContent: "space-between",
+    borderRadius: "12px",
+  }));
 
-export const Root = styled(Stack, {
-  shouldForwardProp: (prop) => prop !== "ismobile" && prop !== "istablet",
-})(({ theme, ismobile }) => ({
-  width: "100%",
-  maxWidth: "1320px",
-  maxHeight: ismobile ? "none" : "637px",
-  margin: "0 auto",
-  padding: theme.spacing(ismobile ? 1 : 2),
-  fontFamily: "Poppins, sans-serif",
-  display: "flex",
-  justifyContent: "space-between",
-  backgroundColor: "#202020",
-  border: "1px solid #242424",
-  borderRadius: "12px",
-  boxSizing: "border-box",
-}));
+export const Root =
+  styled(Stack, {
+    shouldForwardProp: (prop) => prop !== "ismobile" && prop !== "istablet",
+  }) <
+  ResponsiveProps >
+  (({ theme, ismobile }) => ({
+    width: "100%",
+    maxWidth: "1320px",
+    maxHeight: ismobile ? "none" : "637px",
+    margin: "0 auto",
+    padding: theme.spacing(ismobile ? 1 : 2),
+    fontFamily: "Poppins, sans-serif",
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#202020",
+    border: "1px solid #242424",
+    borderRadius: "12px",
+    boxSizing: "border-box",
+  }));
 
 export const HeaderBar = styled(Stack)(({ theme }) => ({
   display: "flex",
