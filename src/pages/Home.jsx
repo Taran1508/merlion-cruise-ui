@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
 import useResponsive from "@/hooks/UseResponsive";
-import { Stack } from "@mui/material";
 import { useState } from "react";
+import BookingStatusCard from "@/components/booking-status-card/BookingCard";
+import { Stack, Typography } from "@mui/material";
 
 const initialSteps = [
   { id: 1, label: "Select Package", isCompleted: true, isActive: false },
@@ -75,58 +76,104 @@ export default function Home() {
   const highlightedOrderProps = ["paidAmount"];
 
   return (
-    <Stack
-      sx={{
+    <div
+      style={{
+        width: "100%",
         display: "flex",
         alignItems: "center",
-        width: isMobile || isTablet ? "100%" : "100%",
         justifyContent: "center",
-        my: 10,
-        p: 6,
       }}
     >
-      <MerlionStepper steps={steps} handleStepClick={handleStepClick} />
-
-      {/* Summary Cards Section */}
       <Stack
         sx={{
-          gap: 4,
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(2, 1fr)", // 1 item per row on xs (mobile)
-            sm: "repeat(2, 1fr)", // 2 items per row on sm (tablet)
-            md: "repeat(3, 1fr)",
-          }, // 1 item per row on xs, 3 items per row on md+
-          gridGap: 16,
+          display: "flex",
+          alignItems: "center",
+          width: isMobile || isTablet ? "100%" : "100%",
+          justifyContent: "center",
+          my: 10,
+          p: 6,
         }}
       >
-        {travelerData.map((data, index) => (
+        <MerlionStepper steps={steps} handleStepClick={handleStepClick} />
+
+        {/* Summary Cards Section */}
+        <Stack
+          sx={{
+            gap: 4,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)", // 1 item per row on xs (mobile)
+              sm: "repeat(2, 1fr)", // 2 items per row on sm (tablet)
+              md: "repeat(3, 1fr)",
+            }, // 1 item per row on xs, 3 items per row on md+
+            gridGap: 16,
+          }}
+        >
+          {travelerData.map((data, index) => (
+            <SummaryCard
+              title={index == 0 ? "Traveler Details" : "Co-Traveler Details"}
+              key={index}
+              summary={[data]}
+              align="left"
+            />
+          ))}
+        </Stack>
+
+        {/* Summary Card with payment summary For future development*/}
+        <Stack sx={{ mt: 2, display: "flex", flexDirection: "row", gap: 5 }}>
           <SummaryCard
-            title={index == 0 ? "Traveler Details" : "Co-Traveler Details"}
-            key={index}
-            summary={[data]}
-            align="left"
+            title="Payment Summary"
+            summary={orderSummaryData}
+            highlightedProperties={highlightedOrderProps}
+            align="right"
+            divider={["vat"]}
           />
-        ))}
+          <SummaryCard
+            title="Payment Summary"
+            summary={orderSummaryData1}
+            highlightedProperties={highlightedOrderProps}
+            align="right"
+            divider={[`paidAmount`, `serviceCharges`, "vat"]}
+          />
+        </Stack>
       </Stack>
 
-      {/* Summary Card with payment summary For future development*/}
-      <Stack sx={{ mt: 2, display: "flex", flexDirection: "row", gap: 5 }}>
-        <SummaryCard
-          title="Payment Summary"
-          summary={orderSummaryData}
-          highlightedProperties={highlightedOrderProps}
-          align="right"
-          divider={["vat"]}
-        />
-        <SummaryCard
-          title="Payment Summary"
-          summary={orderSummaryData1}
-          highlightedProperties={highlightedOrderProps}
-          align="right"
-          divider={[`paidAmount`, `serviceCharges`, "vat"]}
-        />
+      {/* Booking Status Section */}
+      <Stack sx={{ gap: 2, width: "80%", mt: 10 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 700,
+
+            textTransform: "capitalize",
+          }}
+        >
+          Booking Status Examples
+        </Typography>
+        <Stack sx={{ gap: 3 }}>
+          <BookingStatusCard
+            title="Booking Confirmed"
+            subTitle="Payment Successfully done"
+            status="confirmed"
+            note="You will receive a confirmation email shortly"
+          />
+          <Stack sx={{ gap: 2, flexDirection: { xs: "column", md: "row" } }}>
+            <BookingStatusCard
+              title="Payment Pending"
+              subTitle="Awaiting payment confirmation"
+              status="pending"
+            />
+            <BookingStatusCard
+              title="Trip Completed"
+              subTitle="Thank you for traveling with us"
+              status="completed"
+            />
+          </Stack>
+        </Stack>
       </Stack>
-    </Stack>
+    </div>
   );
 }

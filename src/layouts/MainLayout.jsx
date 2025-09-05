@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { Box } from "@mui/material";
-// import Header from "../components/Header";
+import Box from "@mui/material/Box";
+import Header from "../components/Header";
 import useResponsive from "@/hooks/UseResponsive";
 
 export default function MainLayout() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
   return (
@@ -18,7 +17,7 @@ export default function MainLayout() {
         overflowX: "hidden",
       }}
     >
-      {/* <Header /> */}
+      <Header />
       <Box
         component="main"
         sx={{
