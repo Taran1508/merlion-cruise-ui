@@ -139,16 +139,11 @@ export default function CompletedBooking() {
               gap: 4,
               width: "100%",
               maxHeight: "361px",
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr", // 1 item per row on xs (mobile)
-                sm: "1fr", // 2 items per row on sm (tablet)
-                md: "repeat(2, 1fr)",
-              }, // 1 item per row on xs, 3 items per row on md+
+              display: "flex",
               border: "1px solid #242424",
               boxSizing: "border-box",
               borderRadius: 6,
-              padding: 3,
+              padding: 2,
               gridGap: 14,
               overflowY: "auto",
               "&::-webkit-scrollbar": {
@@ -156,14 +151,60 @@ export default function CompletedBooking() {
               },
             }}
           >
-            {travelerData.map((data, index) => (
-              <SummaryCard
-                title={index == 0 ? "Traveler Details" : "Co-Traveler Details"}
-                key={index}
-                summary={[data]}
-                align="left"
-              />
-            ))}
+            <Stack>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontWeight: 600,
+                }}
+              >
+                #BOID021458921 {/*Order ID*/}
+              </Typography>
+              <Typography
+                variant="p"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontWeight: 400,
+                  fontSize: 12,
+                }}
+              >
+                Your Tickets has been booked on 15 Sep 2025 for 4 Guests!
+              </Typography>
+            </Stack>
+            <Stack
+              sx={{
+                gap: 4,
+                width: "100%",
+                maxHeight: "361px",
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr", // 1 item per row on xs (mobile)
+                  sm: "1fr", // 2 items per row on sm (tablet)
+                  md: "repeat(2, 1fr)",
+                }, // 1 item per row on xs, 3 items per row on md+
+
+                boxSizing: "border-box",
+                borderRadius: 6,
+                padding: 1,
+                gridGap: 14,
+                overflowY: "auto",
+                "&::-webkit-scrollbar": {
+                  display: "none", // Chrome, Safari, Edge
+                },
+              }}
+            >
+              {travelerData.map((data, index) => (
+                <SummaryCard
+                  title={
+                    index == 0 ? "Traveler Details" : "Co-Traveler Details"
+                  }
+                  key={index}
+                  summary={[data]}
+                  align="left"
+                />
+              ))}
+            </Stack>
           </Stack>
         </Stack>
         {/* Payment Section - 4b */}
@@ -184,9 +225,31 @@ export default function CompletedBooking() {
                 p: 2,
               }}
             >
+              <Stack>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    fontWeight: 600,
+                  }}
+                >
+                  #TNI0214582R {/*Transaction ID*/}
+                </Typography>
+                <Typography
+                  variant="p"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    fontWeight: 400,
+                    mb: 1,
+                    fontSize: 12,
+                  }}
+                >
+                  Payment Successful {/* Payment Response*/}
+                </Typography>
+              </Stack>
               {isLoggedIn ? (
                 <SummaryCard
-                  title={"Price Details"}
+                  title={""}
                   summary={orderSummaryData1}
                   highlightedProperties={highlightedOrderProps}
                   align="right"
