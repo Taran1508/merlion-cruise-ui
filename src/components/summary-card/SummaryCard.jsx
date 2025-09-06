@@ -18,9 +18,9 @@ const SummaryCard = ({
   summary,
   highlightedProperties = [],
   align = "left",
-  divider,
+  divider = [],
 }) => {
-  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const { isMobile, isTablet, isDesktop, isLg } = useResponsive();
 
   const renderSummaryContent = () => {
     const content = [];
@@ -38,6 +38,7 @@ const SummaryCard = ({
               key={`highlighted-${itemIndex}-${entryIndex}`}
               align={align}
               ismobile={isMobile}
+              islg={isLg}
               istablet={isTablet}
               isdesktop={isDesktop}
             >
@@ -55,6 +56,7 @@ const SummaryCard = ({
                 align={align}
                 ismobile={isMobile}
                 istablet={isTablet}
+                islg={isLg}
                 isdesktop={isDesktop}
               >
                 {String(value[1])}
@@ -69,6 +71,7 @@ const SummaryCard = ({
               align={align}
               ismobile={isMobile}
               istablet={isTablet}
+              islg={isLg}
               isdesktop={isDesktop}
             >
               <LabelText
@@ -83,6 +86,7 @@ const SummaryCard = ({
                 align={align}
                 ismobile={isMobile}
                 istablet={isTablet}
+                islg={isLg}
                 isdesktop={isDesktop}
               >
                 {String(value[1])}

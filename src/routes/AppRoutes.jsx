@@ -4,10 +4,7 @@ import Home from "@/pages/Home";
 import Photos from "@/pages/Photos";
 import Videos from "@/pages/Videos";
 import MyOrders from "@/pages/MyOrders";
-
-// import Home from "@/pages/Home";
-// import Photos from "@/pages/Photos";
-// import Videos from "@/pages/Videos";
+import Bookings from "@/pages/Bookings";
 // import Cart from "@/pages/Cart";
 // import Payment from "@/pages/Payment";
 // import NotFound from "@/pages/NotFound";
@@ -21,10 +18,11 @@ export default function AppRoutes() {
           <Route path="/photos" element={<Photos />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/bookings/:id" element={<Bookings />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
           {/*
-          <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="*" element={<NotFound />} /> */}
+           */}
         </Route>
       </Routes>
     </Router>
