@@ -4,7 +4,7 @@ import Home from "@/pages/Home";
 import Photos from "@/pages/Photos";
 import Videos from "@/pages/Videos";
 import MyOrders from "@/pages/MyOrders";
-import Bookings from "@/pages/Bookings";
+import Bookings from "@/pages/bookings/Bookings";
 // import Cart from "@/pages/Cart";
 // import Payment from "@/pages/Payment";
 // import NotFound from "@/pages/NotFound";
