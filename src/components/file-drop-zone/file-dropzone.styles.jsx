@@ -8,6 +8,7 @@ export const Root = styled(Paper)(({ theme }) => ({
   maxWidth: "1320px",
   maxHeight: "130px",
   marginInline: "auto",
+  marginBottom: "50px",
   boxSizing: "border-box",
 }));
 

@@ -8,6 +8,7 @@ import {
   Title,
   Subtitle,
 } from "./file-dropzone.styles";
+import fileicon from "../../assets/images/fileicon.png";
 
 /**
  * FileDropzone
@@ -70,7 +71,7 @@ export default function FileDropzone({
             }}
           >
             <img
-              src="/file-icon.png"
+              src={fileicon}
               alt="File Icon"
               style={{ width: 24, height: 24, objectFit: "contain" }}
             />
@@ -78,16 +79,6 @@ export default function FileDropzone({
           <Title>Click to Upload Or Drag and drop</Title>
           <Subtitle>File format Excel file (Max. File size: 25 MB)</Subtitle>
           <input {...getInputProps()} />
-          {/* Show uploaded file name */}
-          {file && (
-            <div style={{ marginTop: 8 }}>
-              <Subtitle>
-                {file.name.length > 30
-                  ? file.name.slice(0, 30) + "..."
-                  : file.name}
-              </Subtitle>
-            </div>
-          )}
         </CenterContent>
       </DropArea>
     </Root>
