@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { palette } from "./colors";
-import { fonts } from "./fonts";
+// import { fonts } from "./fonts";
 
 // Optional: define custom elevation levels (for boxShadows or surfaces)
 const createElevation = () => ({
@@ -31,22 +31,22 @@ export const darkTheme = createTheme({
     info: { main: palette.status.info },
     success: { main: palette.status.success },
   },
-  typography: {
-    fontFamily: fonts.displayLarge.fontFamily,
-    h1: fonts.displayLarge,
-    h2: fonts.displayMedium,
-    h3: fonts.displaySmall,
-    h4: fonts.headlineLarge,
-    h5: fonts.headlineMedium,
-    h6: fonts.headlineSmall,
-    body1: fonts.bodyLarge,
-    body2: fonts.bodyMedium,
-    button: fonts.labelLarge,
-    caption: fonts.labelMedium,
-    overline: fonts.labelSmall,
-  },
+  // typography: {
+  //   fontFamily: fonts.displayLarge.fontFamily,
+  //   h1: fonts.displayLarge,
+  //   h2: fonts.displayMedium,
+  //   h3: fonts.displaySmall,
+  //   h4: fonts.headlineLarge,
+  //   h5: fonts.headlineMedium,
+  //   h6: fonts.headlineSmall,
+  //   body1: fonts.bodyLarge,
+  //   body2: fonts.bodyMedium,
+  //   button: fonts.labelLarge,
+  //   caption: fonts.labelMedium,
+  //   overline: fonts.labelSmall,
+  // },
   shape: {
-    borderRadius: 8, // from your design
+    borderRadius: 6, // from your design
   },
   customShadows: createElevation(), // optional
 });

@@ -2,7 +2,7 @@ import CruiseHeroSection from "@/components/cruise-hero-section/CruiseHeroSectio
 import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
 import useResponsive from "@/hooks/UseResponsive";
 import { Stack } from "@mui/system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useParams,
   useSearchParams,
@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import ReviewBooking from "./pages/ReviewBooking";
 import CompletedBooking from "./pages/CompletedBooking";
+import { useTheme } from "@mui/material/styles";
 
 const initialSteps = [
   {
@@ -61,10 +62,31 @@ export default function Bookings() {
   const { isMobile, isTablet, isDesktop } = useResponsive();
   const { id } = useParams(); //for fetching booking details
   const [searchParams, setSearchParams] = useSearchParams();
+  const theme = useTheme();
   const status = searchParams.get("status");
   const navigate = useNavigate();
 
   const PageComponent = STATUS_COMPONENT_MAP[status];
+
+  useEffect(() => {
+    if (!status) return;
+
+    const stepFromStatus = initialSteps.find(
+      (step) => step.statusValue === status
+    );
+
+    if (!stepFromStatus) return;
+
+    const updatedSteps = initialSteps.map((s) => {
+      if (s.id < stepFromStatus.id)
+        return { ...s, isCompleted: true, isActive: false };
+      if (s.id === stepFromStatus.id)
+        return { ...s, isCompleted: false, isActive: true };
+      return { ...s, isCompleted: false, isActive: false };
+    });
+
+    setSteps(updatedSteps);
+  }, [status]);
 
   // if (!PageComponent) {
   //   return <Navigate to="/not-found" replace />;

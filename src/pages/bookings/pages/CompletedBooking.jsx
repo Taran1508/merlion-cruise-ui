@@ -6,6 +6,7 @@ import useResponsive from "@/hooks/UseResponsive";
 import styled from "@emotion/styled";
 import { Button, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 
 // Sample data for SummaryCard
 const travelerData = [
@@ -80,6 +81,7 @@ const highlightedOrderProps = ["paidAmount"];
 
 export default function CompletedBooking() {
   const { isMobile, isTablet, isDesktop } = useResponsive();
+  const theme = useTheme();
   const isLoggedIn = true;
   const ChevronIcon = styled("svg")({
     width: "20px",
@@ -119,17 +121,16 @@ export default function CompletedBooking() {
         sx={{
           display: "flex",
           gap: 1,
-          mt: 10,
+          mt: 8,
           maxWidth: isMobile || isTablet ? "100%" : "95%",
           flexDirection: isMobile || isTablet ? "column" : "row",
-          order: "1px solid #242424",
         }}
       >
         {/* Payment Section - 4a */}
         <Stack sx={{ maxWidth: isMobile || isTablet ? "100%" : "90%", p: 2 }}>
           <Typography
             variant="h6"
-            sx={{ color: "#FFF", mb: 2, fontWeight: 600 }}
+            sx={{ color: theme.palette.text.secondary, mb: 2, fontWeight: 600 }}
           >
             Booking Summary
           </Typography>
@@ -169,7 +170,7 @@ export default function CompletedBooking() {
         <Stack sx={{ maxWidth: isMobile || isTablet ? "100%" : "100%", p: 2 }}>
           <Typography
             variant="h6"
-            sx={{ color: "#FFF", mb: 2, fontWeight: 600 }}
+            sx={{ color: theme.palette.text.secondary, mb: 2, fontWeight: 600 }}
           >
             Fare Summary
           </Typography>
@@ -205,13 +206,6 @@ export default function CompletedBooking() {
           </Stack>
         </Stack>
       </Stack>
-      {/* login - 5 */}
-      <Stack
-        sx={{
-          alignItems: "end",
-          width: isMobile || isTablet ? "100%" : "85%",
-        }}
-      ></Stack>
     </>
   );
 }

@@ -5,6 +5,7 @@ import useResponsive from "@/hooks/UseResponsive";
 import styled from "@emotion/styled";
 import { Button, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 
 // Sample data for SummaryCard
 const travelerData = [
@@ -79,6 +80,7 @@ const highlightedOrderProps = ["paidAmount"];
 
 export default function ReviewBooking() {
   const { isMobile, isTablet, isDesktop } = useResponsive();
+  const theme = useTheme();
   const isLoggedIn = true;
   const ChevronIcon = styled("svg")({
     width: "20px",
@@ -90,6 +92,7 @@ export default function ReviewBooking() {
       strokeLinecap: "round",
     },
   });
+
   return (
     <>
       {" "}
@@ -109,7 +112,7 @@ export default function ReviewBooking() {
         <Stack>
           <Typography
             variant="h6"
-            sx={{ color: "#FFF", mb: 2, fontWeight: 600 }}
+            sx={{ color: theme.palette.text.secondary, mb: 2, fontWeight: 600 }}
           >
             Booking Summary
           </Typography>
@@ -160,7 +163,7 @@ export default function ReviewBooking() {
         <Stack sx={{ maxWidth: isMobile || isTablet ? "100%" : "80%", p: 2 }}>
           <Typography
             variant="h6"
-            sx={{ color: "#FFF", mb: 2, fontWeight: 600 }}
+            sx={{ color: theme.palette.text.secondary, mb: 2, fontWeight: 600 }}
           >
             Apply Promocodes
           </Typography>
@@ -195,7 +198,9 @@ export default function ReviewBooking() {
                 borderRadius: 6,
               }}
             >
-              <Typography sx={{ color: "#FFF", fontWeight: 500 }}>
+              <Typography
+                sx={{ color: theme.palette.text.secondary, fontWeight: 500 }}
+              >
                 View all coupons
               </Typography>
               <ChevronIcon
@@ -214,7 +219,7 @@ export default function ReviewBooking() {
         <Stack sx={{ maxWidth: isMobile || isTablet ? "100%" : "100%", p: 2 }}>
           <Typography
             variant="h6"
-            sx={{ color: "#FFF", mb: 2, fontWeight: 600 }}
+            sx={{ color: theme.palette.text.secondary, mb: 2, fontWeight: 600 }}
           >
             Fare Summary
           </Typography>
