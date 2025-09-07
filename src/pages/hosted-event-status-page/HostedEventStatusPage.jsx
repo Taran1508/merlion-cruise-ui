@@ -37,6 +37,8 @@ export default function HostedEventStatusPage() {
   const theme = useTheme();
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
+  // const { orderData, loading, error } = useHostedEventStatusData(id); // Useful when fetching data using API
+
   const handleRowClick = (rowData, column) => {
     console.log("Row clicked:", rowData, "Column:", column);
   };
