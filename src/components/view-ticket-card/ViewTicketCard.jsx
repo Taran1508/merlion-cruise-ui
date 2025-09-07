@@ -25,17 +25,6 @@ const ViewTicketCard = ({
 }) => {
   return (
     <div>
-      <Typography
-        variant="h5"
-        color="#848484"
-        sx={{
-          fontWeight: 600,
-          marginBottom: 2,
-          fontSize: { xs: "16px", sm: "18px", md: "20px" },
-        }}
-      >
-        Booking Summary
-      </Typography>
       <CardRoot>
         <Header>
           {title ? (
@@ -74,7 +63,7 @@ const ViewTicketCard = ({
 
         <Surface>
           <TicketWrapper onClick={() => onViewTicket(ticketImage || "N/A")}>
-            <TicketImg src="/ticket.png" alt="Ticket" />
+            <TicketImg src="/src/assets/qr.png" alt="Ticket" />
             <TicketOverlay />
             <TicketLabel variant="button">View Tickets</TicketLabel>
           </TicketWrapper>

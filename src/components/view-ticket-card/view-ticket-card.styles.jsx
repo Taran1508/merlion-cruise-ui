@@ -5,11 +5,10 @@ export const CardRoot = styled(Card)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing(2),
-  padding: "24px",
+  padding: "20px",
   borderRadius: "24px",
   backgroundColor: "transparent",
   boxShadow: "none",
-  border: "1px solid #242424",
   maxWidth: "845px",
   maxHeight: "416px",
 }));
@@ -30,7 +29,6 @@ export const Surface = styled(Stack)(({ theme }) => ({
   borderRadius: 16,
   gap: "30px",
   backgroundColor: "#171717",
-  border: "1px solid #242424",
 }));
 
 export const TicketWrapper = styled("div")(() => ({
