@@ -113,7 +113,6 @@ export default function Home() {
         }}
       >
         <MerlionStepper steps={steps} handleStepClick={handleStepClick} />
-
         {/* Summary Cards Section */}
         <Stack
           sx={{

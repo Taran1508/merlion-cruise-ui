@@ -59,6 +59,15 @@ const SummaryCard = ({
               >
                 {String(value[1])}
               </ValueText>
+              <ValueText
+                ishighlighted={true}
+                align={align}
+                ismobile={isMobile}
+                istablet={isTablet}
+                isdesktop={isDesktop}
+              >
+                {String(value[2])}
+              </ValueText>
             </HighlightedRow>
           );
         } else {
