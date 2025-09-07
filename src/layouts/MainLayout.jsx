@@ -27,7 +27,7 @@ export default function MainLayout() {
           height: "100%",
 
           // px: isMobile ? 1 : isTablet ? 2 : 4, // responsive padding
-          py: isMobile ? 1 : 2, // responsive vertical padding
+          // py: isMobile ? 1 : 2, // responsive vertical padding
           overflowY: "auto", // ensures scrollable content without white gaps
         }}
       >

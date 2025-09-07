@@ -4,6 +4,7 @@ import Home from "@/pages/Home";
 import Photos from "@/pages/Photos";
 import Videos from "@/pages/Videos";
 import MyOrders from "@/pages/MyOrders";
+import HostedEventStatusPage from "@/pages/hosted-event-status-page/HostedEventStatusPage";
 
 // import Home from "@/pages/Home";
 // import Photos from "@/pages/Photos";
@@ -21,6 +22,10 @@ export default function AppRoutes() {
           <Route path="/photos" element={<Photos />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/my-orders" element={<MyOrders />} />
+          <Route
+            path="/hosted-events/:id"
+            element={<HostedEventStatusPage />}
+          />
           {/*
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />

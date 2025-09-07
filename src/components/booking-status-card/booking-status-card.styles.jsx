@@ -28,6 +28,11 @@ const statusConfig = {
     titleColor: "#DC2626",
     textColor: "#FFF",
   },
+  upcoming: {
+    background: "#171717",
+    titleColor: "#FFF",
+    textColor: "#FFF",
+  },
 };
 
 export const StatusCardContainer = styled(Box, {
