@@ -1,5 +1,11 @@
-import React from "react";
-import { Box, Stack, Typography, Button, useTheme } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  Button,
+  useTheme,
+  Divider,
+} from "@mui/material";
 import BookingStatusCard from "@/components/booking-status-card/BookingCard";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import useResponsive from "@/hooks/UseResponsive";
@@ -16,6 +22,9 @@ import DisplayBooking from "./pages/DisplayBooking";
 import DisplayPayment from "./pages/DisplayPayment";
 import ChartWidget from "@/components/widget-chart/ChartWidget";
 import { DisplayTable } from "./pages/DisplayTable";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { defaultConfig, statusMap } from "@/config/hostedEventsConfig";
 
 const rows = [
   { name: "Tom", mobile: "+441634567890", status: "Accepted" },
@@ -28,16 +37,16 @@ const ticketID = "#BOID02145892";
 const ticketMessage =
   "Your Tickets has been booked on 15 Sep 2025 for 4 Guests!";
 
-const displayTable = true;
-const displayBooking = true;
-const displayPayment = true;
-const displayRSVP = true;
-
 export default function HostedEventStatusPage() {
   const theme = useTheme();
   const { isMobile, isTablet, isDesktop } = useResponsive();
-
+  const [searchParams] = useSearchParams();
+  const status = searchParams.get("status");
   // const { orderData, loading, error } = useHostedEventStatusData(id); // Useful when fetching data using API
+
+  const displayConfig = useMemo(() => {
+    return status && statusMap[status] ? statusMap[status] : defaultConfig;
+  }, [status]);
 
   const handleRowClick = (rowData, column) => {
     console.log("Row clicked:", rowData, "Column:", column);
@@ -80,14 +89,14 @@ export default function HostedEventStatusPage() {
             top: 12,
             left: "18%",
             color: "#fff",
-            width: 72,
+            width: "%",
             height: 24,
             textTransform: "none",
             fontSize: "14px",
             zIndex: 2,
           }}
         >
-          Back
+          Host an Event / ORI120246
         </Button>
       </Box>
       <Stack
@@ -119,11 +128,103 @@ export default function HostedEventStatusPage() {
             flexWrap: "wrap",
           }}
         >
-          <BookingStatusCard
-            title={"Booking Cancelled"}
-            subTitle={"Refund & Cancellation Policy"}
-            status={"cancelled"}
+          {displayConfig.Status ? (
+            <BookingStatusCard
+              title={
+                status === "completed"
+                  ? "Event Completed"
+                  : status === "cancelled"
+                  ? "Booking Cancelled"
+                  : "Event Declined"
+              }
+              subTitle={
+                status === "cancelled" ? "Refund & Cancellation Policy" : ""
+              }
+              status={
+                status === "cancelled"
+                  ? "upcoming"
+                  : status === "completed"
+                  ? "completed"
+                  : "failed"
+              }
+            />
+          ) : (
+            <Stack
+              sx={{
+                flexGrow: 1,
+                width: "100%",
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "flex-end",
+                flexDirection: "row",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ color: "#A0A0A0", mb: 2, fontWeight: 600 }}
+              >
+                Up Coming
+              </Typography>
+              <Stack
+                sx={{
+                  width: "90%",
+                  alignItems: "center",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  flexDirection: "row",
+                  gap: 2,
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    background:
+                      "linear-gradient(to right, #838383, #C9C9C9, #C9C9C9)",
+                    fontFamily: "Poppins",
+                    color: "black",
+                    borderRadius: 12,
+                    borderColor: "#171717",
+                    textTransform: "none",
+                    width: "14%",
+                    height: 40,
+                    fontWeight: 500,
+                    fontSize: "13px",
+                    px: 3,
+                  }}
+                >
+                  Modify Booking
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#202020",
+                    border: "1px solid #171717",
+                    fontFamily: "Poppins",
+                    color: "#fff",
+                    borderRadius: 12,
+                    borderColor: "#A0A0A0",
+                    textTransform: "none",
+                    width: "14%",
+                    height: 40,
+                    fontWeight: 500,
+                    fontSize: "13px",
+                    px: 3,
+                  }}
+                >
+                  Cancel Booking
+                </Button>
+              </Stack>
+            </Stack>
+          )}
+          <Divider
+            sx={{
+              width: "98%",
+              borderColor: "#FFFFFF29",
+              borderBottomWidth: "1px",
+              my: 2,
+            }}
           />
+
           {/* Left Section (Booking Summary & Details) */}
           <Stack
             sx={{
@@ -131,7 +232,7 @@ export default function HostedEventStatusPage() {
               flex: { xs: "1 1 100%", md: "1 1 40%" },
               width: "100%",
               maxWidth: "1350px",
-              ...(displayPayment && {
+              ...(displayConfig.Payment && {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -139,7 +240,7 @@ export default function HostedEventStatusPage() {
               }),
             }}
           >
-            {displayBooking && (
+            {displayConfig.Booking && (
               <DisplayBooking
                 ticketID={ticketID}
                 ticketMessage={ticketMessage}
@@ -149,7 +250,7 @@ export default function HostedEventStatusPage() {
             {/* Right Section (Payment Summary) */}
 
             {/* Place your payment summary component here */}
-            {displayPayment && (
+            {displayConfig.Payment && (
               <DisplayPayment
                 orderData={orderData}
                 orderSummaryData1={orderSummaryData1}
@@ -158,7 +259,7 @@ export default function HostedEventStatusPage() {
           </Stack>
         </Stack>
         {/* Box 3 */}
-        {displayRSVP && (
+        {displayConfig.RSVP && (
           <Stack
             sx={{
               flexGrow: 1,
@@ -212,7 +313,7 @@ export default function HostedEventStatusPage() {
             maxWidth: "1350px",
           }}
         >
-          {displayTable && (
+          {displayConfig.Table && (
             <MerlionTable
               title="Guest List (3)"
               columns={sampleColumns}
