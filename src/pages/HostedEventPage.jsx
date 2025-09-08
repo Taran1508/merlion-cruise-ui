@@ -1,100 +1,15 @@
 import FileDropzone from "@/components/file-drop-zone/FileDropzone";
 import MerlionStepper from "@/components/merlin-stepper/MerlinStepper";
-import { Box, Typography, Stack, Button } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { styled } from "@mui/material";
 import UploadSection from "@/components/upload-section/UploadSection";
 import RsvpSection from "@/components/rsvps-section/RsvpSection";
-
-// Cancel Booking (red outline)
-export const CancelBookingButton = styled(Button)(({ theme }) => ({
-  flex: "0 0 auto",
-  borderRadius: "999px",
-  border: `1px solid #4D4D4D `,
-  color: "#fff",
-  textTransform: "none",
-  backgroundColor: "#202020",
-  fontWeight: 500,
-  fontSize: "14px",
-  width: "160px",
-  padding: theme.spacing(1, 0),
-  "&:hover": {
-    backgroundColor: "transparent",
-    borderColor: "#202020   ",
-  },
-  [theme.breakpoints.down("md")]: {
-    alignSelf: "center",
-    width: "120px",
-    fontSize: "12px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    alignSelf: "center",
-    width: "110px",
-    fontSize: "10px",
-  },
-}));
-
-export const BackBookingButton = styled(Button)(({ theme }) => ({
-  flex: "0 0 auto",
-  borderRadius: "16px",
-  border: `1px solid #4D4D4D`,
-  color: theme.palette.common.white,
-  textTransform: "none",
-  backgroundColor: "transparent",
-  fontWeight: 500,
-  fontSize: "14px",
-  maxWidth: "120px",
-  width: "100%",
-  padding: theme.spacing(1, 0),
-  "&:hover": {
-    backgroundColor: "rgba(255,255,255,0.03)",
-    borderColor: "rgba(255,255,255,0.24)",
-  },
-  [theme.breakpoints.down("md")]: {
-    alignSelf: "center",
-    width: "110px",
-    fontSize: "12px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    alignSelf: "center",
-    width: "100px",
-    fontSize: "10px",
-  },
-}));
-
-// Next (blue gradient)
-export const NextButton = styled(Button)(({ theme }) => ({
-  flex: "0 0 auto",
-  borderRadius: "999px",
-  textTransform: "none",
-  fontWeight: 500,
-  fontSize: "14px",
-  width: "155px",
-  padding: theme.spacing(1, 0),
-  backgroundColor: "#838383", // solid gray
-  color: "#000",
-  border: "none",
-  "&:hover": {
-    backgroundImage: "linear-gradient(90deg, #6f6f6f, #a0a0a0)", // subtle hover gradient
-  },
-  "&.Mui-disabled": {
-    backgroundImage: "none",
-    backgroundColor: "#444444",
-    color: "#000",
-  },
-
-  [theme.breakpoints.down("md")]: {
-    alignSelf: "center",
-    width: "120px",
-    fontSize: "12px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    alignSelf: "center",
-    width: "110px",
-    fontSize: "10px",
-  },
-}));
+import {
+  CancelBookingButton,
+  BackBookingButton,
+  NextButton,
+} from "../styles/hosted-event.styles";
 
 const initialSteps = [
   {
@@ -141,60 +56,39 @@ const HostedEventPage = () => {
 
   useEffect(() => {
     const currentIndex = initialSteps.findIndex((s) => s.key === step);
-
     const updatedSteps = initialSteps.map((s, index) => {
-      if (index < currentIndex) {
-        return { ...s, isActive: false, isCompleted: true }; // previous steps completed
-      } else if (index === currentIndex) {
-        return { ...s, isActive: true, isCompleted: false }; // current step active
-      } else {
-        return { ...s, isActive: false, isCompleted: false }; // future steps inactive
-      }
+      if (index < currentIndex)
+        return { ...s, isActive: false, isCompleted: true };
+      if (index === currentIndex)
+        return { ...s, isActive: true, isCompleted: false };
+      return { ...s, isActive: false, isCompleted: false };
     });
-
     setStepUp(updatedSteps);
   }, [step]);
 
   const handleStepClick = (stepId) => {
     const clickedStep = stepUp.find((s) => s.id === stepId);
     if (!clickedStep) return;
-
-    // Update URL to match the clicked step
     navigate(`/create-hosted-event?step=${clickedStep.key}`);
-
-    // Update stepper state
     setStepUp((prev) =>
       prev.map((s, index) => {
-        if (index < stepId - 1) {
-          return { ...s, isActive: false, isCompleted: true }; // previous steps completed
-        } else if (s.id === stepId) {
-          return { ...s, isActive: true, isCompleted: false }; // clicked step active
-        } else {
-          return { ...s, isActive: false, isCompleted: false }; // future steps inactive
-        }
+        if (index < stepId - 1)
+          return { ...s, isActive: false, isCompleted: true };
+        if (s.id === stepId)
+          return { ...s, isActive: true, isCompleted: false };
+        return { ...s, isActive: false, isCompleted: false };
       })
     );
   };
 
   useEffect(() => {
     const storedFile = localStorage.getItem("uploadedFile");
-    if (storedFile) {
-      const parsed = JSON.parse(storedFile);
-      // Set a dummy File object to display in UploadSection
-      setUploadedFile(parsed);
-    }
+    if (storedFile) setUploadedFile(JSON.parse(storedFile));
   }, []);
-  // Save file to localStorage
+
   const saveFileToLocalStorage = (file) => {
-    if (!file) {
-      localStorage.removeItem("uploadedFile");
-      return;
-    }
-    const fileData = {
-      name: file.name,
-      size: file.size,
-      type: file.type,
-    };
+    if (!file) return localStorage.removeItem("uploadedFile");
+    const fileData = { name: file.name, size: file.size, type: file.type };
     localStorage.setItem("uploadedFile", JSON.stringify(fileData));
   };
 
@@ -231,10 +125,10 @@ const HostedEventPage = () => {
               onFilesAccepted={(files) => {
                 if (files && files.length > 0) {
                   setUploadedFile(files[0]);
-                  saveFileToLocalStorage(files[0]); // persist in localStorage
+                  saveFileToLocalStorage(files[0]);
                 } else {
                   setUploadedFile(null);
-                  saveFileToLocalStorage(null); // clear if removed
+                  saveFileToLocalStorage(null);
                 }
               }}
             />
@@ -255,10 +149,7 @@ const HostedEventPage = () => {
             alignItems="center"
             sx={{ mt: 3 }}
           >
-            {/* Left side */}
             <BackBookingButton variant="outlined">Back</BackBookingButton>
-
-            {/* Right side */}
             <Stack direction="row" spacing={2}>
               <CancelBookingButton>Cancel Booking</CancelBookingButton>
               <NextButton disabled={!uploadedFile} onClick={handleNavigate}>
@@ -268,6 +159,7 @@ const HostedEventPage = () => {
           </Stack>
         </Box>
       )}
+
       {step === "rsvps" && <RsvpSection />}
     </>
   );

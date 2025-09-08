@@ -4,7 +4,7 @@ import {
   BackBookingButton,
   CancelBookingButton,
   NextButton,
-} from "@/pages/HostedEventPage"; // adjust import path if needed
+} from "../../styles/hosted-event.styles"; // adjust import path if needed
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 
