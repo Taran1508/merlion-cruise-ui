@@ -10,7 +10,7 @@ export default function MainLayout() {
   return (
     <Box
       sx={{
-        minHeight: "100vh", // better than fixed height for responsiveness
+        minHeight: "100vh",
         width: "100%",
         display: "flex",
         flexDirection: "column",

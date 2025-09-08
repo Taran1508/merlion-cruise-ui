@@ -12,8 +12,18 @@ import {
 } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (link) => {
+    if (link === "Host an Event") {
+      navigate("/create-hosted-event?step=add-passengers");
+    } else {
+      navigate(`/${link.toLowerCase().replace(/\s+/g, "-")}`);
+    }
+  };
   return (
     <AppBar
       position="static"
@@ -253,6 +263,7 @@ export default function Header() {
                 cursor: "pointer",
                 "&:hover": { color: "gray", fontSize: "14px" },
               }}
+              onClick={() => handleNavigation(link)}
             >
               {link}
             </Typography>
