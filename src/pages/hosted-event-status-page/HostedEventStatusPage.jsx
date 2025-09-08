@@ -145,7 +145,7 @@ export default function HostedEventStatusPage() {
                   ? "upcoming"
                   : status === "completed"
                   ? "completed"
-                  : "failed"
+                  : "cancelled"
               }
             />
           ) : (

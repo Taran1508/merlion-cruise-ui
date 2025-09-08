@@ -60,7 +60,10 @@ export const HostDetailsCard = styled(Box, {
   backgroundColor: "#171717",
 }));
 
-export const HostDataColumn = styled(Box)(({ ismobile }) => ({
+export const HostDataColumn = styled(Box, {
+  shouldForwardProp: (prop) =>
+    prop !== "ismobile" && prop !== "istablet" && prop !== "isdesktop",
+})(({ ismobile }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",

@@ -30,6 +30,7 @@ export default function AppRoutes() {
             path="/hosted-events/:id"
             element={<HostedEventStatusPage />}
           />
+          <Route
             path="/booking-status/:cruise-id"
             element={<BookingStatusPage />}
           />

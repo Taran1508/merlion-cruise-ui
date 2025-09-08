@@ -1,6 +1,30 @@
 import { Box, Button } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Stack } from "@mui/material";
+import MerlionTable from "@/components/merlion-table/MerlionTable";
+
+const sampleColumns = [
+  {
+    id: "orderId",
+    label: "Order ID",
+    minWidth: 200,
+  },
+  {
+    id: "dateTime",
+    label: "Date & Time",
+    minWidth: 260,
+  },
+  {
+    id: "method",
+    label: "Method",
+    minWidth: 240,
+  },
+  {
+    id: "amount",
+    label: "Amount",
+    minWidth: 200,
+  },
+];
 
 const sampleData = [
   {
