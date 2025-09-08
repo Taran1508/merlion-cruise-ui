@@ -1,15 +1,15 @@
-// src/pages/OrderDetails.jsx
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Box } from "@mui/material";
 import SummaryCard from "@/components/summary-card/SummaryCard";
 
 export default function OrderDetails() {
   const { id } = useParams();
 
-  // ✅ State for traveler data
-  const [travelerData, setTravelerData] = useState([]);
+  // State for order details
+  const [orderData, setOrderData] = useState([]);
 
-  // ✅ Example: set initial mock data (replace with API later)
+  // Mock API call
   useEffect(() => {
     const mockData = [
       {
@@ -19,23 +19,28 @@ export default function OrderDetails() {
         payment: ["Paid Amount", "AED 10,000.00"],
       },
     ];
-
-    setTravelerData(mockData);
+    setOrderData(mockData);
   }, [id]);
 
   return (
-    <>
-      <div style={{ padding: "16px" }}>
-        {travelerData.map((data, index) => (
-          <SummaryCard
-            key={index}
-            title="Payment Summary"
-            summary={[data]}
-            align="right"
-            highlightedProperties={["payment"]}
-          />
-        ))}
-      </div>
-    </>
+    <Box
+      sx={{
+        width: "100%",
+        mt: { xs: 4, sm: 6, md: 5 },
+        px: { xs: 2, sm: 4, md: 6 },
+        maxWidth: "1200px",
+        mx: "auto",
+      }}
+    >
+      {orderData.map((data, index) => (
+        <SummaryCard
+          key={index}
+          title="Payment Summary"
+          summary={[data]}
+          align="right"
+          highlightedProperties={["payment"]}
+        />
+      ))}
+    </Box>
   );
 }
