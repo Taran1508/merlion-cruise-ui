@@ -11,6 +11,7 @@ export const Root = styled(Paper)(({ theme }) => ({
   color: theme.palette.common.white,
   borderRadius: "20px",
   overflow: "hidden",
+  width: "100%",
   maxWidth: "1320px",
   maxHeight: "224px",
   marginInline: "auto",

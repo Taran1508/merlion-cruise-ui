@@ -10,6 +10,7 @@ import {
   SubText,
   PromoImg,
 } from "./promo-card.styles";
+import promoImage from "../../assets/promo.png";
 
 const PromoCard = ({ title, onClickRemove, onClickApply }) => {
   const [applied, setApplied] = useState(false);
@@ -28,7 +29,7 @@ const PromoCard = ({ title, onClickRemove, onClickApply }) => {
     <Root elevation={0}>
       <Content direction="row" alignItems="center">
         {/* left badge/icon */}
-        <PromoImg src="/promo.png" alt="Promo" />
+        <PromoImg src={promoImage} alt="Promo" />
 
         {/* middle text */}
         <TitleStack direction="column" justifyContent="center">
