@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Typography } from "@mui/material";
 
 import photo1 from "@/assets/images/invitations/photo1.jpg";
 import photo2 from "@/assets/images/invitations/photo2.jpg";
@@ -17,32 +16,8 @@ import photo10 from "@/assets/images/invitations/photo10.jpg";
 import InvitationCard from "@/components/invitation-card/InvitationCard";
 import InvitationScrollSection from "@/components/invitation-scroll/InvitationScrollSection";
 
-// ---------------- Styled Components ----------------
-const DetailsContainer = styled(Stack)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  flexWrap: "wrap",
-  padding: theme.spacing(4),
-  maxWidth: "1200px",
-  margin: "0 auto",
-  color: "#fff",
-  [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center",
-    gap: theme.spacing(3),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-  },
-}));
-
-const AboutSection = styled(Stack)(({ theme }) => ({
-  flex: 2,
-  maxWidth: "60%",
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "100%",
-  },
-}));
+// ✅ Import styled components
+import { DetailsContainer, AboutSection } from "../styles/my-invitation.styles";
 
 // ---------------- Example Data ----------------
 const exampleInvitation = {
@@ -71,7 +46,7 @@ export default function MyInvitationPage() {
 
   // Dummy ticket data
   const ticketData = {
-    ticketImage: photo1, // replace with real ticket image
+    ticketImage: photo1,
     onViewTicket: () => console.log("View Ticket"),
     onDownloadTicket: () => console.log("Download Ticket"),
     onPrintTicket: () => console.log("Print Ticket"),
