@@ -1,6 +1,6 @@
-import AutoScrollSection from "@/components/auto-scroll-section/AutoScrollSection";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Stack, Typography, Button, Avatar, Box } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import photo1 from "@/assets/images/invitations/photo1.jpg";
@@ -13,6 +13,7 @@ import photo7 from "@/assets/images/invitations/photo7.jpg";
 import photo8 from "@/assets/images/invitations/photo8.jpg";
 import photo9 from "@/assets/images/invitations/photo9.jpg";
 import photo10 from "@/assets/images/invitations/photo10.jpg";
+
 import InvitationCard from "@/components/invitation-card/InvitationCard";
 import InvitationScrollSection from "@/components/invitation-scroll/InvitationScrollSection";
 
@@ -22,12 +23,12 @@ const DetailsContainer = styled(Stack)(({ theme }) => ({
   justifyContent: "space-between",
   flexWrap: "wrap",
   padding: theme.spacing(4),
-  maxWidth: "1200px", // control max width
-  margin: "0 auto", // centers the container
+  maxWidth: "1200px",
+  margin: "0 auto",
   color: "#fff",
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    alignItems: "center", // center children on smaller screens
+    alignItems: "center",
     textAlign: "center",
     gap: theme.spacing(3),
     paddingLeft: theme.spacing(2),
@@ -43,52 +44,9 @@ const AboutSection = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const HostCard = styled(Stack)(({ theme }) => ({
-  flex: 1,
-  maxWidth: "360px",
-  backgroundColor: "#1e1e1e",
-  borderRadius: "12px",
-  padding: theme.spacing(3),
-  border: "1px solid #242424",
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "100%",
-  },
-}));
-
-const HostAvatar = styled(Avatar)(() => ({
-  width: 48,
-  height: 48,
-  backgroundColor: "#e91e63",
-  fontWeight: 600,
-}));
-
-const HostInfo = styled(Box)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: "4px",
-  backgroundColor: "#2a2a2a",
-  padding: "12px",
-  borderRadius: "8px",
-  fontSize: "14px",
-}));
-
-const EventInfo = styled(Box)(() => ({
-  marginTop: "12px",
-  padding: "12px",
-  borderRadius: "8px",
-  backgroundColor: "#2a2a2a",
-}));
-
-const InfoRow = styled("div")(() => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  marginBottom: "6px",
-  fontSize: "14px",
-}));
-
-const invitationPendingData = {
-  invitedBy: ["Invited By", "Invited by tom"],
+// ---------------- Example Data ----------------
+const exampleInvitation = {
+  invitedBy: ["Invited By", "Invited by Tom"],
   data: {
     hostName: ["Host Name", "Tom"],
     email: ["Email", "tom@gmail.com"],
@@ -108,6 +66,26 @@ const invitationPendingData = {
 export default function MyInvitationPage() {
   const { id } = useParams();
 
+  // State for invitation data
+  const [invitationData, setInvitationData] = useState(exampleInvitation);
+
+  // Dummy ticket data
+  const ticketData = {
+    ticketImage: photo1, // replace with real ticket image
+    onViewTicket: () => console.log("View Ticket"),
+    onDownloadTicket: () => console.log("Download Ticket"),
+    onPrintTicket: () => console.log("Print Ticket"),
+  };
+
+  // Conditionally add ticketInformation if status is accepted/completed
+  const sections = {
+    ...invitationData,
+    ...(invitationData.eventDetails.status === "accepted" ||
+    invitationData.eventDetails.status === "completed"
+      ? { ticketInformation: ticketData }
+      : {}),
+  };
+
   const photos = [
     photo1,
     photo2,
@@ -124,6 +102,7 @@ export default function MyInvitationPage() {
   return (
     <>
       <InvitationScrollSection images={photos} />
+
       <DetailsContainer direction="row" gap={15}>
         <AboutSection spacing={2}>
           <Typography style={{ fontWeight: 600, fontSize: "40px" }}>
@@ -145,7 +124,8 @@ export default function MyInvitationPage() {
           </Typography>
         </AboutSection>
 
-        <InvitationCard sections={invitationPendingData} />
+        {/* Pass sections with conditional ticket info */}
+        <InvitationCard sections={sections} />
       </DetailsContainer>
     </>
   );
