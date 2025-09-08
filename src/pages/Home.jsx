@@ -138,7 +138,6 @@ export default function Home() {
           ))}
         </Stack>
 
-        {/* Summary Card with payment summary For future development*/}
         <Stack sx={{ mt: 2, display: "flex", flexDirection: "row", gap: 5 }}>
           <SummaryCard
             title="Payment Summary"
@@ -156,7 +155,6 @@ export default function Home() {
           />
         </Stack>
       </Stack>
-
       <Stack sx={{ gap: 2, width: "80%", mt: 10 }}>
         <Typography
           variant="h5"
@@ -222,3 +220,68 @@ export default function Home() {
     </div>
   );
 }
+
+//  Summary Card with payment summary For future development
+
+//       </Stack>
+
+//       <Stack sx={{ gap: 2, width: "80%", mt: 10 }}>
+//         <Typography
+//           variant="h5"
+//           sx={{
+//             color: "#FFFFFF",
+//             fontFamily: "Poppins, sans-serif",
+//             fontWeight: 700,
+
+//             textTransform: "capitalize",
+//           }}
+//         >
+//           Booking Status Examples
+//         </Typography>
+//         <Stack sx={{ gap: 3 }}>
+//           <BookingStatusCard
+//             title="Booking Confirmed"
+//             subTitle="Payment Successfully done"
+//             status="confirmed"
+//             note="You will receive a confirmation email shortly"
+//           />
+//           <Stack sx={{ gap: 2, flexDirection: { xs: "column", md: "row" } }}>
+//             <BookingStatusCard
+//               title="Payment Pending"
+//               subTitle="Awaiting payment confirmation"
+//               status="pending"
+//             />
+//             <BookingStatusCard
+//               title="Trip Completed"
+//               subTitle="Thank you for traveling with us"
+//               status="completed"
+//             />
+//           </Stack>
+//         </Stack>
+
+//         {/* Invitation Card Section */}
+//         <Typography
+//           variant="h5"
+//           sx={{
+//             color: "#FFFFFF",
+
+//             fontFamily: "Poppins, sans-serif",
+//             fontWeight: 700,
+
+//             textTransform: "capitalize",
+//           }}
+//         >
+//           Invitation Card
+//         </Typography>
+//         <Stack sx={{ gap: 3, alignItems: "center" }}>
+//           <Typography
+//             sx={{
+//               color: "#FFFFFF",
+//               fontFamily: "Poppins, sans-serif",
+//               fontSize: "16px",
+//             }}
+//           >
+//             Click Accept or Decline to see the status change
+//           </Typography>
+//           <InvitationCard sections={invitationPendingData} />
+//         </Stack>
