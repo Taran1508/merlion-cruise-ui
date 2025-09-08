@@ -9,8 +9,8 @@ const statusConfig = {
     textColor: "#FFF",
   },
   completed: {
-    background: "rgba(34, 197, 94, 0.06)",
-    titleColor: "#22C55E",
+    background: "#0D1712",
+    titleColor: "#12B76A",
     textColor: "#FFF",
   },
   pending: {
@@ -19,13 +19,13 @@ const statusConfig = {
     textColor: "#FFF",
   },
   cancelled: {
-    background: "rgba(239, 68, 68, 0.06)",
-    titleColor: "#EF4444",
+    background: "#42201D",
+    titleColor: "#F04438",
     textColor: "#FFF",
   },
-  failed: {
-    background: "rgba(220, 38, 38, 0.06)",
-    titleColor: "#DC2626",
+  upcoming: {
+    background: "#171717",
+    titleColor: "#FFFFFF",
     textColor: "#FFF",
   },
 };

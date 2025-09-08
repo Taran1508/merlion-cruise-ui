@@ -26,17 +26,6 @@ const ViewTicketCard = ({
 }) => {
   return (
     <div>
-      <Typography
-        variant="h5"
-        color="#848484"
-        sx={{
-          fontWeight: 600,
-          marginBottom: 2,
-          fontSize: { xs: "16px", sm: "18px", md: "20px" },
-        }}
-      >
-        Booking Summary
-      </Typography>
       <CardRoot>
         <Header>
           {title ? (
