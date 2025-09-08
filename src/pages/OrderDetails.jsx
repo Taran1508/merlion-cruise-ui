@@ -6,16 +6,7 @@ const travelerData = [
     travelerName: ["Traveler Name", "Tom"],
     email: ["Email", "tom@gmail.com"],
     phoneNumber: ["Phone Number", "+9172135412554"],
-  },
-  {
-    travelerName: ["Traveler Name", "Tom"],
-    email: ["Email", "tom@gmail.com"],
-    phoneNumber: ["Phone Number", "+9172135412554"],
-  },
-  {
-    travelerName: ["Traveler Name", "Tom"],
-    email: ["Email", "tom@gmail.com"],
-    phoneNumber: ["Phone Number", "+9172135412554"],
+    payment: ["Paid Amount", "AED 10,000.00"],
   },
 ];
 export default function OrderDetails() {
@@ -23,31 +14,15 @@ export default function OrderDetails() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Order Details</h1>
-      <p className="text-lg">
-        Viewing details for order: <span className="font-mono">{id}</span>
-      </p>
       {travelerData.map((data, index) => (
         <SummaryCard
-          title={index == 0 ? "Traveler Details" : "Co-Traveler Details"}
+          title={"Payment Summary"}
           key={index}
           summary={[data]}
-          align="left"
-          highlightedProperties={["travelerName"]}
+          align="right"
+          highlightedProperties={["payment"]}
         />
       ))}
-      {/* Example placeholder data */}
-      <div className="mt-4 space-y-2">
-        <p>
-          <strong>Status:</strong> Processing
-        </p>
-        <p>
-          <strong>Date:</strong> Sept 6, 2025
-        </p>
-        <p>
-          <strong>Total:</strong> $120.00
-        </p>
-      </div>
     </div>
   );
 }
