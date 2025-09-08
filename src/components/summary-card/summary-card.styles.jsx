@@ -39,7 +39,6 @@ export const CardContent = styled(Box, {
   alignItems: "flex-start",
   gap: ismobile ? "16px" : "40px",
   width: "100%",
-  maxWidth: "100%",
   padding: "16px",
   borderRadius: "16px",
   border: "1px solid #242424",
@@ -77,7 +76,7 @@ export const DataRow = styled(Box, {
     ? align === "right"
       ? "flex-end"
       : "flex-start"
-    : "center",
+    : "start",
   justifyContent: align === "right" ? "flex-end" : "space-between",
   gap: ismobile ? "4px" : istablet ? "12px" : islg ? "12px" : "40px",
   width: "100%",

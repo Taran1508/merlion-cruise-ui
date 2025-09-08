@@ -42,6 +42,7 @@ const MerlionTable = ({
   hidePagination = false,
   hideSearchbar = false,
   onChangePage = () => {},
+  isActive,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -139,7 +140,7 @@ const MerlionTable = ({
                     {column.label}
                   </HeaderCell>
                 ))}
-                <HeaderCell />
+                {isActive && <HeaderCell />}
               </StyledRow>
             </TableHead>
             <TableBody>
@@ -155,16 +156,18 @@ const MerlionTable = ({
                         : row[column.id]}
                     </BodyCell>
                   ))}
-                  <BodyCell>
-                    <ActionButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleButtonClick("View Details", row);
-                      }}
-                    >
-                      View Details
-                    </ActionButton>
-                  </BodyCell>
+                  {isActive && (
+                    <BodyCell>
+                      <ActionButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleButtonClick("View Details", row);
+                        }}
+                      >
+                        View Details
+                      </ActionButton>
+                    </BodyCell>
+                  )}
                 </StyledRow>
               ))}
             </TableBody>
