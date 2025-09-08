@@ -5,6 +5,12 @@ import Photos from "@/pages/Photos";
 import Videos from "@/pages/Videos";
 import MyOrders from "@/pages/MyOrders";
 import Bookings from "@/pages/bookings/Bookings";
+import HostedEventPage from "@/pages/HostedEventPage";
+import MyInvitationPage from "@/pages/MyInvitationPage";
+
+// import Home from "@/pages/Home";
+// import Photos from "@/pages/Photos";
+// import Videos from "@/pages/Videos";
 // import Cart from "@/pages/Cart";
 // import Payment from "@/pages/Payment";
 // import NotFound from "@/pages/NotFound";
@@ -20,6 +26,8 @@ export default function AppRoutes() {
           <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/bookings/:id" element={<Bookings />} />
           {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="/create-hosted-event" element={<HostedEventPage />} />
+          <Route path="my-invitations/:id" element={<MyInvitationPage />} />
           {/*
           <Route path="/payment" element={<Payment />} />
            */}

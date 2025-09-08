@@ -14,9 +14,7 @@ import {
   HeroSubtitle,
 } from "./auto-scroll-section.styles";
 
-const AutoScrollSection = ({ title, subTitle, onBack }) => {
-  const images = ["/photo1.jpg", "/photo2.jpg", "/photo3.jpg", "/photo4.jpg"];
-
+const AutoScrollSection = ({ title, subTitle, onBack, images }) => {
   return (
     <HeroRoot component="section" aria-label="auto scroll hero">
       {/* Background images */}

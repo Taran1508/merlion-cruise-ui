@@ -10,7 +10,7 @@ export default function MainLayout() {
   return (
     <Box
       sx={{
-        minHeight: "100vh", // better than fixed height for responsiveness
+        minHeight: "100vh",
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -26,7 +26,6 @@ export default function MainLayout() {
           backgroundColor: "#060606",
           width: "100%",
           height: "100%",
-
           // px: isMobile ? 1 : isTablet ? 2 : 4, // responsive padding
           // py: isMobile ? 1 : 2, // responsive vertical padding
           overflowY: "auto", // ensures scrollable content without white gaps

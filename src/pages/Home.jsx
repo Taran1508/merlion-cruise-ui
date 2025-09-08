@@ -6,6 +6,7 @@ import BookingStatusCard from "@/components/booking-status-card/BookingCard";
 import { Stack, Typography } from "@mui/material";
 import InvitationCard from "../components/invitation-card/InvitationCard";
 import SummaryCard from "@/components/summary-card/SummaryCard";
+import ViewTicketCard from "@/components/view-ticket-card/ViewTicketCard";
 
 const initialSteps = [
   { id: 1, label: "Select Package", isCompleted: true, isActive: false },
@@ -152,6 +153,68 @@ export default function Home() {
             align="right"
             divider={[`paidAmount`, `serviceCharges`, "vat"]}
           />
+        </Stack>
+      </Stack>
+      <Stack sx={{ gap: 2, width: "80%", mt: 10 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 700,
+
+            textTransform: "capitalize",
+          }}
+        >
+          Booking Status Examples
+        </Typography>
+        <Stack sx={{ gap: 3 }}>
+          <BookingStatusCard
+            title="Booking Confirmed"
+            subTitle="Payment Successfully done"
+            status="confirmed"
+            note="You will receive a confirmation email shortly"
+          />
+          <Stack sx={{ gap: 2, flexDirection: { xs: "column", md: "row" } }}>
+            <BookingStatusCard
+              title="Payment Pending"
+              subTitle="Awaiting payment confirmation"
+              status="pending"
+            />
+            <BookingStatusCard
+              title="Trip Completed"
+              subTitle="Thank you for traveling with us"
+              status="completed"
+            />
+          </Stack>
+        </Stack>
+
+        {/* Invitation Card Section */}
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 700,
+
+            textTransform: "capitalize",
+          }}
+        >
+          Invitation Card
+        </Typography>
+        <Stack sx={{ gap: 3, alignItems: "center" }}>
+          <Typography
+            sx={{
+              color: "#FFFFFF",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "16px",
+            }}
+          >
+            Click Accept or Decline to see the status change
+          </Typography>
+          <InvitationCard sections={invitationPendingData} />
+          <ViewTicketCard />
         </Stack>
       </Stack>
     </div>
