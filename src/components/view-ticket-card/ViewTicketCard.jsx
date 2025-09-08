@@ -11,6 +11,7 @@ import {
   TicketButton,
   TicketOverlay,
 } from "./view-ticket-card.styles";
+import qrimage from "../../assets/images/imageqr.png";
 
 const noop = () => {};
 
@@ -63,7 +64,7 @@ const ViewTicketCard = ({
 
         <Surface>
           <TicketWrapper onClick={() => onViewTicket(ticketImage || "N/A")}>
-            <TicketImg src="/src/assets/qr.png" alt="Ticket" />
+            <TicketImg src={qrimage} alt="Ticket" />
             <TicketOverlay />
             <TicketLabel variant="button">View Tickets</TicketLabel>
           </TicketWrapper>

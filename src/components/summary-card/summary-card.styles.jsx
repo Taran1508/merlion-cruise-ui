@@ -67,9 +67,10 @@ export const DataRow = styled(Box, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" &&
     prop !== "istablet" &&
+    prop !== "islg" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})(({ ismobile, align }) => ({
+})(({ ismobile, align, islg, istablet }) => ({
   display: "flex",
   flexDirection: ismobile ? "column" : "row",
   alignItems: ismobile
@@ -78,7 +79,7 @@ export const DataRow = styled(Box, {
       : "flex-start"
     : "center",
   justifyContent: align === "right" ? "flex-end" : "space-between",
-  gap: ismobile ? "4px" : "40px",
+  gap: ismobile ? "4px" : istablet ? "12px" : islg ? "12px" : "40px",
   width: "100%",
   textAlign: align === "right" ? "right" : "left",
 }));
@@ -114,7 +115,7 @@ export const ValueText = styled(Typography, {
 })(({ ismobile, istablet, islg, ishighlighted, align }) => ({
   color: "#FFF",
   fontFamily: "Poppins, sans-serif",
-  fontSize: ismobile ? "12px" : istablet ? "14px" : islg ? "12px" : "16px",
+  fontSize: ismobile ? "12px" : istablet ? "12px" : islg ? "12px" : "16px",
   fontWeight: ishighlighted ? 700 : 400,
   lineHeight: "normal",
   textTransform: ishighlighted ? "uppercase" : "capitalize",
@@ -136,14 +137,17 @@ export const HighlightedRow = styled(Box, {
   shouldForwardProp: (prop) =>
     prop !== "ismobile" &&
     prop !== "istablet" &&
+    prop !== "islg" &&
     prop !== "isdesktop" &&
     prop !== "align",
-})(({ align }) => ({
+})(({ align, ismobile, istablet, islg }) => ({
   display: "flex",
+  flexDirection: ismobile ? "column" : "row",
   justifyContent: "start",
   alignItems: "center",
   color: "#FFF",
   width: "100%",
+  gap: ismobile ? "4px" : istablet ? "12px" : islg ? "12px" : "40px",
   padding: "4px 0",
   backgroundColor: "#202020",
   borderTop: "1px solid #242424",

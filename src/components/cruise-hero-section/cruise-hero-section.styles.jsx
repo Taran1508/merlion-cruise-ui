@@ -28,11 +28,13 @@ export const HeroRoot = styled(Stack)(({ theme }) => ({
 }));
 
 export const HeroBackground = styled("img")(() => ({
-  width: "fit",
-  height: "fit",
-  objectFit: "contain",
+  width: "inherit",
+  height: "inherit",
+  objectFit: "cover",
   display: "block",
   filter: "grayscale(100%)",
+  transform: "scale(1.25)", // zoom in to 80% of the original frame
+  transformOrigin: "center",
 }));
 
 export const ContentWrapper = styled(Stack)(({ theme }) => ({
