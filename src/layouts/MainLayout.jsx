@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Header from "../components/Header";
 import useResponsive from "@/hooks/UseResponsive";
+import Footer from "@/components/Footer";
 
 export default function MainLayout() {
   const { isMobile, isTablet, isDesktop } = useResponsive();
@@ -25,11 +26,12 @@ export default function MainLayout() {
           backgroundColor: "#060606",
           width: "100%",
           height: "100%",
-          overflowY: "auto",
+          overflowY: "auto", // ensures scrollable content without white gaps
         }}
       >
         <Outlet />
       </Box>
+      <Footer />
     </Box>
   );
 }

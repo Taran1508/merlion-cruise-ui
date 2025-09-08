@@ -6,6 +6,7 @@ import BookingStatusCard from "@/components/booking-status-card/BookingCard";
 import { Stack, Typography } from "@mui/material";
 import InvitationCard from "../components/invitation-card/InvitationCard";
 import SummaryCard from "@/components/summary-card/SummaryCard";
+import ViewTicketCard from "@/components/view-ticket-card/ViewTicketCard";
 
 const initialSteps = [
   { id: 1, label: "Select Package", isCompleted: true, isActive: false },
@@ -215,6 +216,7 @@ export default function Home() {
             Click Accept or Decline to see the status change
           </Typography>
           <InvitationCard sections={invitationPendingData} />
+          <ViewTicketCard />
         </Stack>
       </Stack>
     </div>
